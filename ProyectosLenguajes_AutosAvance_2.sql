@@ -1,629 +1,1087 @@
---DATABASE CONSESIONARIA
+-- SCRIPT DE CREACION PARA PROYECTO DE LENGUAJES
 
---tablas
---PRIMERO DROPEARLAS
+-- Eliminar las tablas si ya existen
 
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE detalle_factura CASCADE CONSTRAINTS';
+    EXCEPTION WHEN OTHERS THEN NULL;
+END;
+/
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE Auditoria_General CASCADE CONSTRAINTS';
+    EXCEPTION WHEN OTHERS THEN NULL;
+END;
+/
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE facturas CASCADE CONSTRAINTS';
+    EXCEPTION WHEN OTHERS THEN NULL;
+END;
+/
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE stock CASCADE CONSTRAINTS';
+    EXCEPTION WHEN OTHERS THEN NULL;
+END;
+/
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE vehiculos_ubicaciones CASCADE CONSTRAINTS';
+    EXCEPTION WHEN OTHERS THEN NULL;
+END;
+/
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE vehiculos CASCADE CONSTRAINTS';
+    EXCEPTION WHEN OTHERS THEN NULL;
+END;
+/
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE citas CASCADE CONSTRAINTS';
+    EXCEPTION WHEN OTHERS THEN NULL;
+END;
+/
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE pagos CASCADE CONSTRAINTS';
+    EXCEPTION WHEN OTHERS THEN NULL;
+END;
+/
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE financiamiento CASCADE CONSTRAINTS';
+    EXCEPTION WHEN OTHERS THEN NULL;
+END;
+/
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE ubicaciones CASCADE CONSTRAINTS';
+    EXCEPTION WHEN OTHERS THEN NULL;
+END;
+/
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE proveedores CASCADE CONSTRAINTS';
+    EXCEPTION WHEN OTHERS THEN NULL;
+END;
+/
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE categorias CASCADE CONSTRAINTS';
+    EXCEPTION WHEN OTHERS THEN NULL;
+END;
+/
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE usuarios CASCADE CONSTRAINTS';
+    EXCEPTION WHEN OTHERS THEN NULL;
+END;
+/
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE clientes CASCADE CONSTRAINTS';
+    EXCEPTION WHEN OTHERS THEN NULL;
+END;
+/
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE roles CASCADE CONSTRAINTS';
+    EXCEPTION WHEN OTHERS THEN NULL;
+END;
+/
 
-DROP TABLE Autos;
-DROP TABLE Empleado;
-DROP TABLE Proveedores;    
-DROP TABLE Cliente;
-DROP TABLE Ventas;
-DROP TABLE Auditoria;
+-- Eliminar la secuencia si ya existe
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE seq_roles';
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE != -2289 THEN 
+            RAISE;
+        END IF;
+END;
+/
+CREATE SEQUENCE seq_roles START WITH 1 INCREMENT BY 1;
 
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE seq_auditoria';
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE != -2289 THEN 
+            RAISE;
+        END IF;
+END;
+/
 
-CREATE TABLE Autos (
-ID_auto VARCHAR2(10) PRIMARY KEY,
-Marca VARCHAR2(50),
-Modelo VARCHAR2(50),
-Ano NUMBER(4),
-Precio NUMBER(10, 2),
-Color VARCHAR2(30),
-Descripcion VARCHAR2(500),
-Fecha_disponibilidad DATE);
+CREATE SEQUENCE seq_auditoria START WITH 1 INCREMENT BY 1;
 
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE seq_usuarios';
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE != -2289 THEN 
+            RAISE;
+        END IF;
+END;
+/
 
-Create table Empleado(
-id_Empleado VARCHAR2(10)PRIMARY KEY,
-nombreEmpleado varchar2(100),
-apellidoEmpleado1 varchar2(100),
-apellidoEmpleado2 varchar2(100),
-correo_empleado varchar2(100),
-telefono_empleado NUMBER,
-direccionEmpleado varchar2(250));
+CREATE SEQUENCE seq_usuarios START WITH 1 INCREMENT BY 1;
 
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE seq_clientes';
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE != -2289 THEN 
+            RAISE;
+        END IF;
+END;
+/
 
-Create table Proveedores(
-id_Proveedor varchar2(10)PRIMARY KEY,
-ID_auto VARCHAR2(10),
-nombreProveedor varchar2(100),
-produtoProveedor varchar2(100),
-direccionProveedor varchar2(250),
-correo_proveedor varchar2(100),
-telefono_proveedor NUMBER,
-precio_Proveedor NUMBER,
-CONSTRAINT ID_auto_FK2 FOREIGN KEY (ID_auto) REFERENCES Autos(ID_auto));
+CREATE SEQUENCE seq_clientes START WITH 1 INCREMENT BY 1;
 
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE seq_categorias';
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE != -2289 THEN 
+            RAISE;
+        END IF;
+END;
+/
 
-CREATE TABLE Cliente (
-ID_Cliente VARCHAR2(10)PRIMARY KEY,
-Nombre VARCHAR2(100),
-PrimerApellido VARCHAR2(100),
-SegundoApellido VARCHAR2(100),
-Direccion VARCHAR2(100),
-Telefono VARCHAR2(100),
-Correo VARCHAR2(100));
+CREATE SEQUENCE seq_categorias START WITH 1 INCREMENT BY 1;
 
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE seq_proveedores';
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE != -2289 THEN 
+            RAISE;
+        END IF;
+END;
+/
 
-CREATE TABLE Ventas (
-id_Venta VARCHAR2(10)PRIMARY KEY,
-ID_Cliente VARCHAR2(10),
-descripcion_Venta VARCHAR2(250),
-cantidadProducto NUMBER,
-id_Empleado VARCHAR2(10),
-ID_auto VARCHAR2(10),
-precio_Producto NUMBER,
-fecha_venta DATE,
-CONSTRAINT ID_Cliente_FK FOREIGN KEY (ID_Cliente) REFERENCES Cliente(ID_Cliente),
-CONSTRAINT id_Empleado_FK FOREIGN KEY (id_Empleado) REFERENCES Empleado(id_Empleado),
-CONSTRAINT ID_auto_FK FOREIGN KEY (ID_auto) REFERENCES Autos(ID_auto));
+CREATE SEQUENCE seq_proveedores START WITH 1 INCREMENT BY 1;
 
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE seq_vehiculos';
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE != -2289 THEN 
+            RAISE;
+        END IF;
+END;
+/
 
-    
-CREATE OR REPLACE PROCEDURE AgregarAuto(
-    p_ID_auto IN VARCHAR2,
+CREATE SEQUENCE seq_vehiculos START WITH 1 INCREMENT BY 1;
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE seq_stock';
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE != -2289 THEN 
+            RAISE;
+        END IF;
+END;
+/
+
+CREATE SEQUENCE seq_stock START WITH 1 INCREMENT BY 1;
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE seq_facturas';
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE != -2289 THEN 
+            RAISE;
+        END IF;
+END;
+/
+
+CREATE SEQUENCE seq_facturas START WITH 1 INCREMENT BY 1;
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE seq_detalle_factura';
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE != -2289 THEN 
+            RAISE;
+        END IF;
+END;
+/
+
+CREATE SEQUENCE seq_detalle_factura START WITH 1 INCREMENT BY 1;
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE seq_citas';
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE != -2289 THEN 
+            RAISE;
+        END IF;
+END;
+/
+
+CREATE SEQUENCE seq_citas START WITH 1 INCREMENT BY 1;
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE seq_financiamiento';
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE != -2289 THEN 
+            RAISE;
+        END IF;
+END;
+/
+
+CREATE SEQUENCE seq_financiamiento START WITH 1 INCREMENT BY 1;
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE seq_pagos';
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE != -2289 THEN 
+            RAISE;
+        END IF;
+END;
+/
+
+CREATE SEQUENCE seq_pagos START WITH 1 INCREMENT BY 1;
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE seq_ubicaciones';
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE != -2289 THEN 
+            RAISE;
+        END IF;
+END;
+/
+
+CREATE SEQUENCE seq_ubicaciones START WITH 1 INCREMENT BY 1;
+
+-- CREACION DE LAS TABLAS
+
+-- Crear la tabla roles
+CREATE TABLE roles (
+    id NUMBER PRIMARY KEY,
+    nombre VARCHAR2(255) NOT NULL
+);
+
+-- Crear la tabla Auditoria_General
+CREATE TABLE Auditoria_General (
+    ID_Auditoria NUMBER PRIMARY KEY,
+    Nombre_Tabla VARCHAR2(50),
+    ID_Registro VARCHAR2(50),
+    Operacion VARCHAR2(10),
+    Fecha_Cambio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Usuario VARCHAR2(50),
+    Detalles VARCHAR2(4000)
+);
+
+-- Crear la tabla usuarios
+CREATE TABLE usuarios (
+    ID_usuarios NUMBER PRIMARY KEY,
+    email VARCHAR2(255) UNIQUE NOT NULL,
+    password VARCHAR2(255) NOT NULL,
+    nombre VARCHAR2(255),
+    apellido VARCHAR2(255),
+    telefono VARCHAR2(50),
+    direccion VARCHAR2(255),
+    rol_id NUMBER,
+    CONSTRAINT fk_rol_id FOREIGN KEY (rol_id) REFERENCES roles(id)
+);
+
+-- Crear la tabla clientes
+CREATE TABLE clientes (
+    id_cliente NUMBER PRIMARY KEY,
+    nombre VARCHAR2(255),
+    apellido VARCHAR2(255),
+    email VARCHAR2(255) UNIQUE NOT NULL,
+    telefono VARCHAR2(50),
+    direccion VARCHAR2(255),
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Crear la tabla categorias
+CREATE TABLE categorias (
+    id_categoria NUMBER PRIMARY KEY,
+    nombre VARCHAR2(255) NOT NULL
+);
+
+-- Crear la tabla proveedores
+CREATE TABLE proveedores (
+    id_proveedor NUMBER PRIMARY KEY,
+    nombre VARCHAR2(255) NOT NULL,
+    contacto VARCHAR2(255),
+    telefono VARCHAR2(50),
+    direccion VARCHAR2(255)
+);
+
+-- Crear la tabla vehiculos
+CREATE TABLE vehiculos (
+    id_vehiculo NUMBER PRIMARY KEY,
+    modelo VARCHAR2(255),
+    marca VARCHAR2(255),
+    ano NUMBER,
+    precio NUMBER(10, 2),
+    estado VARCHAR2(50),
+    color VARCHAR2(50),
+    vin VARCHAR2(255) UNIQUE,
+    categoria_id NUMBER,
+    proveedor_id NUMBER,
+    Foto_URL VARCHAR2(255),
+    CONSTRAINT fk_categoria_id FOREIGN KEY (categoria_id) REFERENCES categorias(id_categoria),
+    CONSTRAINT fk_proveedor_id FOREIGN KEY (proveedor_id) REFERENCES proveedores(id_proveedor)
+);
+
+-- Crear la tabla stock
+CREATE TABLE stock (
+    id_stock NUMBER PRIMARY KEY,
+    vehiculo_id NUMBER,
+    cantidad NUMBER,
+    CONSTRAINT fk_vehiculo_id_stock FOREIGN KEY (vehiculo_id) REFERENCES vehiculos(id_vehiculo)
+);
+
+-- Crear la tabla facturas
+CREATE TABLE facturas (
+    id_factura NUMBER PRIMARY KEY,
+    cliente_id NUMBER,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    total NUMBER(10, 2),
+    CONSTRAINT fk_cliente_id FOREIGN KEY (cliente_id) REFERENCES clientes(id_cliente)
+);
+
+-- Crear la tabla detalle_factura
+CREATE TABLE detalle_factura (
+    id_detalle_factura NUMBER PRIMARY KEY,
+    factura_id NUMBER,
+    vehiculo_id NUMBER,
+    cantidad NUMBER,
+    precio_unitario NUMBER(10, 2),
+    CONSTRAINT fk_factura_id FOREIGN KEY (factura_id) REFERENCES facturas(id_factura),
+    CONSTRAINT fk_vehiculo_id FOREIGN KEY (vehiculo_id) REFERENCES vehiculos(id_vehiculo)
+);
+
+-- Crear la tabla citas
+CREATE TABLE citas (
+    id_citas NUMBER PRIMARY KEY,
+    cliente_id NUMBER,
+    usuario_id NUMBER,
+    vehiculo_id NUMBER,
+    fecha_hora TIMESTAMP,
+    tipo VARCHAR2(50),
+    estado VARCHAR2(50),
+    CONSTRAINT fk_cliente_id_citas FOREIGN KEY (cliente_id) REFERENCES clientes(id_cliente),
+    CONSTRAINT fk_usuario_id FOREIGN KEY (usuario_id) REFERENCES usuarios(ID_usuarios),
+    CONSTRAINT fk_vehiculo_id_citas FOREIGN KEY (vehiculo_id) REFERENCES vehiculos(id_vehiculo)
+);
+
+-- Crear la tabla financiamiento
+CREATE TABLE financiamiento (
+    id_financiamiento NUMBER PRIMARY KEY,
+    cliente_id NUMBER,
+    vehiculo_id NUMBER,
+    monto_financiado NUMBER(10, 2),
+    interes NUMBER(5, 2),
+    plazo NUMBER,
+    estado VARCHAR2(50),
+    CONSTRAINT fk_cliente_id_financiamiento FOREIGN KEY (cliente_id) REFERENCES clientes(id_cliente),
+    CONSTRAINT fk_vehiculo_id_financiamiento FOREIGN KEY (vehiculo_id) REFERENCES vehiculos(id_vehiculo)
+);
+
+-- Crear la tabla pagos
+CREATE TABLE pagos (
+    id_pagos NUMBER PRIMARY KEY,
+    cliente_id NUMBER,
+    factura_id NUMBER,
+    monto NUMBER(10, 2),
+    fecha TIMESTAMP,
+    metodo_pago VARCHAR2(50),
+    CONSTRAINT fk_cliente_id_pagos FOREIGN KEY (cliente_id) REFERENCES clientes(id_cliente),
+    CONSTRAINT fk_factura_id_pagos FOREIGN KEY (factura_id) REFERENCES facturas(id_factura)
+);
+
+-- Crear la tabla ubicaciones
+CREATE TABLE ubicaciones (
+    id_ubicaciones NUMBER PRIMARY KEY,
+    nombre VARCHAR2(255),
+    direccion VARCHAR2(255),
+    telefono VARCHAR2(50)
+);
+
+-- ALTERTABLES
+ALTER TABLE vehiculos ADD (ID_Auditoria NUMBER);
+ALTER TABLE proveedores ADD (ID_Auditoria NUMBER);
+ALTER TABLE stock ADD (ID_Auditoria NUMBER);
+ALTER TABLE facturas ADD (ID_Auditoria NUMBER);
+ALTER TABLE detalle_factura ADD (ID_Auditoria NUMBER);
+ALTER TABLE citas ADD (ID_Auditoria NUMBER);
+ALTER TABLE financiamiento ADD (ID_Auditoria NUMBER);
+ALTER TABLE pagos ADD (ID_Auditoria NUMBER);
+--FIN DE LOS ALTERTABLES
+
+-- Crear triggers SEQ
+-- Triggers para la secuencia de roles
+CREATE OR REPLACE TRIGGER trg_roles
+BEFORE INSERT ON roles
+FOR EACH ROW
+BEGIN
+    SELECT seq_roles.NEXTVAL INTO :new.id FROM dual;
+END;
+/
+
+-- Triggers para la secuencia de auditoría
+CREATE OR REPLACE TRIGGER trg_auditoria
+BEFORE INSERT ON Auditoria_General
+FOR EACH ROW
+BEGIN
+    SELECT seq_auditoria.NEXTVAL INTO :new.ID_Auditoria FROM dual;
+END;
+/
+
+-- Triggers para la secuencia de clientes
+CREATE OR REPLACE TRIGGER trg_clientes
+BEFORE INSERT ON clientes
+FOR EACH ROW
+BEGIN
+    SELECT seq_clientes.NEXTVAL INTO :new.id_cliente FROM dual;
+END;
+/
+
+-- Triggers para la secuencia de categorias
+CREATE OR REPLACE TRIGGER trg_categorias
+BEFORE INSERT ON categorias
+FOR EACH ROW
+BEGIN
+    SELECT seq_categorias.NEXTVAL INTO :new.id_categoria FROM dual;
+END;
+/
+
+-- Triggers para la secuencia de proveedores
+CREATE OR REPLACE TRIGGER trg_proveedores
+BEFORE INSERT ON proveedores
+FOR EACH ROW
+BEGIN
+    SELECT seq_proveedores.NEXTVAL INTO :new.id_proveedor FROM dual;
+END;
+/
+
+-- Triggers para la secuencia de vehiculos
+CREATE OR REPLACE TRIGGER trg_vehiculos
+BEFORE INSERT ON vehiculos
+FOR EACH ROW
+BEGIN
+    SELECT seq_vehiculos.NEXTVAL INTO :new.id_vehiculo FROM dual;
+END;
+/
+
+-- Triggers para la secuencia de stock
+CREATE OR REPLACE TRIGGER trg_stock
+BEFORE INSERT ON stock
+FOR EACH ROW
+BEGIN
+    SELECT seq_stock.NEXTVAL INTO :new.id_stock FROM dual;
+END;
+/
+
+-- Triggers para la secuencia de facturas
+CREATE OR REPLACE TRIGGER trg_facturas
+BEFORE INSERT ON facturas
+FOR EACH ROW
+BEGIN
+    SELECT seq_facturas.NEXTVAL INTO :new.id_factura FROM dual;
+END;
+/
+
+-- Triggers para la secuencia de detalle_factura
+CREATE OR REPLACE TRIGGER trg_detalle_factura
+BEFORE INSERT ON detalle_factura
+FOR EACH ROW
+BEGIN
+    SELECT seq_detalle_factura.NEXTVAL INTO :new.id_detalle_factura FROM dual;
+END;
+/
+
+-- Triggers para la secuencia de citas
+CREATE OR REPLACE TRIGGER trg_citas
+BEFORE INSERT ON citas
+FOR EACH ROW
+BEGIN
+    SELECT seq_citas.NEXTVAL INTO :new.id_citas FROM dual;
+END;
+/
+
+-- Triggers para la secuencia de financiamiento
+CREATE OR REPLACE TRIGGER trg_financiamiento
+BEFORE INSERT ON financiamiento
+FOR EACH ROW
+BEGIN
+    SELECT seq_financiamiento.NEXTVAL INTO :new.id_financiamiento FROM dual;
+END;
+/
+
+-- Triggers para la secuencia de pagos
+CREATE OR REPLACE TRIGGER trg_pagos
+BEFORE INSERT ON pagos
+FOR EACH ROW
+BEGIN
+    SELECT seq_pagos.NEXTVAL INTO :new.id_pagos FROM dual;
+END;
+/
+
+-- Triggers para la secuencia de ubicaciones
+CREATE OR REPLACE TRIGGER trg_ubicaciones
+BEFORE INSERT ON ubicaciones
+FOR EACH ROW
+BEGIN
+    SELECT seq_ubicaciones.NEXTVAL INTO :new.id_ubicaciones FROM dual;
+END;
+/
+
+-- PROCEDIMIENTOS
+-- Procedimiento para Agregar Vehículo
+CREATE OR REPLACE PROCEDURE AgregarVehiculo (
+    p_ID_vehiculo IN NUMBER,          
     p_Marca IN VARCHAR2,
     p_Modelo IN VARCHAR2,
     p_Ano IN NUMBER,
     p_Precio IN NUMBER,
     p_Color IN VARCHAR2,
-    p_Descripcion IN VARCHAR2,
-    p_Fecha_disponibilidad IN DATE
-)
-AS
+    p_Foto_URL IN VARCHAR2
+) AS
 BEGIN
-    INSERT INTO Autos (ID_auto, Marca, Modelo, Ano, Precio, Color, Descripcion, Fecha_disponibilidad)
-    VALUES (p_ID_auto, p_Marca, p_Modelo, p_Ano, p_Precio, p_Color, p_Descripcion, p_Fecha_disponibilidad);
-    
+    INSERT INTO vehiculos (
+        ID_vehiculo,
+        Marca,
+        Modelo,
+        Ano,
+        Precio,
+        Color,
+        Foto_URL
+    ) VALUES (
+        p_ID_vehiculo,
+        p_Marca,
+        p_Modelo,
+        p_Ano,
+        p_Precio,
+        p_Color,
+        p_Foto_URL
+    );
+
     COMMIT;
-    DBMS_OUTPUT.PUT_LINE('Auto agregado exitosamente.');
+    DBMS_OUTPUT.PUT_LINE('Vehículo agregado correctamente.');
 EXCEPTION
     WHEN OTHERS THEN
         ROLLBACK;
-        DBMS_OUTPUT.PUT_LINE('Error al agregar el auto: ' || SQLERRM);
+        DBMS_OUTPUT.PUT_LINE('Error al agregar el vehículo: ' || SQLERRM);
 END;
+/
 
-
-CREATE OR REPLACE PROCEDURE EditarAuto (
-    p_ID_auto IN VARCHAR2,
+-- Procedimiento para Editar Vehículo
+CREATE OR REPLACE PROCEDURE EditarVehiculo (
+    p_ID_vehiculo IN NUMBER,         
     p_Marca IN VARCHAR2,
     p_Modelo IN VARCHAR2,
     p_Ano IN NUMBER,
     p_Precio IN NUMBER,
     p_Color IN VARCHAR2,
-    p_Descripcion IN VARCHAR2,
-    p_Fecha_disponibilidad IN DATE
+    p_Foto_URL IN VARCHAR2
 ) AS
 BEGIN
-    UPDATE Autos
+    UPDATE vehiculos
     SET Marca = p_Marca,
         Modelo = p_Modelo,
         Ano = p_Ano,
         Precio = p_Precio,
         Color = p_Color,
-        Descripcion = p_Descripcion,
-        Fecha_disponibilidad = p_Fecha_disponibilidad
-    WHERE ID_auto = p_ID_auto;
-    
-    COMMIT;
-    DBMS_OUTPUT.PUT_LINE('Auto actualizado correctamente.');
-EXCEPTION
-    WHEN OTHERS THEN
-        DBMS_OUTPUT.PUT_LINE('Error al actualizar el auto: ' || SQLERRM);
-END;
-
-
-CREATE OR REPLACE PROCEDURE eliminar_auto(
-    p_ID_auto IN VARCHAR2
-)
-IS
-BEGIN
-    DELETE FROM Autos
-    WHERE ID_auto = p_ID_auto;
+        Foto_URL = p_Foto_URL
+    WHERE ID_vehiculo = p_ID_vehiculo;
 
     IF SQL%ROWCOUNT = 0 THEN
-        DBMS_OUTPUT.PUT_LINE('No se encontr� ning�n auto con el ID especificado.');
+        DBMS_OUTPUT.PUT_LINE('No se encontró ningún vehículo con el ID especificado.');
     ELSE
-        DBMS_OUTPUT.PUT_LINE('Auto eliminado exitosamente.');
+        DBMS_OUTPUT.PUT_LINE('Vehículo actualizado correctamente.');
     END IF;
-EXCEPTION
-    WHEN OTHERS THEN
-        DBMS_OUTPUT.PUT_LINE('Error al intentar eliminar el auto: ' || SQLERRM);
-END;
 
-CREATE OR REPLACE PROCEDURE AgregarEmpleado(
-    id_Empleado_in IN VARCHAR2,
-    nombreEmpleado_in IN VARCHAR2,
-    apellidoEmpleado1_in IN VARCHAR2,
-    apellidoEmpleado2_in IN VARCHAR2,
-    correo_empleado_in IN VARCHAR2,
-    telefono_empleado_in IN NUMBER,
-    direccionEmpleado_in IN VARCHAR2
-)
-IS
-BEGIN
-    INSERT INTO Empleado (
-        id_Empleado,
-        nombreEmpleado,
-        apellidoEmpleado1,
-        apellidoEmpleado2,
-        correo_empleado,
-        telefono_empleado,
-        direccionEmpleado
-    ) VALUES (
-        id_Empleado_in,
-        nombreEmpleado_in,
-        apellidoEmpleado1_in,
-        apellidoEmpleado2_in,
-        correo_empleado_in,
-        telefono_empleado_in,
-        direccionEmpleado_in
-    );
-    
     COMMIT;
-    
-    DBMS_OUTPUT.PUT_LINE('Empleado agregado correctamente.');
 EXCEPTION
     WHEN OTHERS THEN
-        DBMS_OUTPUT.PUT_LINE('Error al agregar el empleado: ' || SQLERRM);
+        DBMS_OUTPUT.PUT_LINE('Error al actualizar el vehículo: ' || SQLERRM);
         ROLLBACK;
-END AgregarEmpleado;
+END;
+/
 
-CREATE OR REPLACE PROCEDURE EditarEmpleado(
-    p_idEmpleado IN VARCHAR2,
-    p_nombre IN VARCHAR2,
-    p_apellido1 IN VARCHAR2,
-    p_apellido2 IN VARCHAR2,
-    p_correo IN VARCHAR2,
-    p_telefono IN NUMBER,
-    p_direccion IN VARCHAR2
+-- Procedimiento para Eliminar Vehículo
+CREATE OR REPLACE PROCEDURE EliminarVehiculo(
+    p_ID_vehiculo IN NUMBER          
 )
 IS
 BEGIN
-    UPDATE Empleado
-    SET nombreEmpleado = p_nombre,
-        apellidoEmpleado1 = p_apellido1,
-        apellidoEmpleado2 = p_apellido2,
-        correo_empleado = p_correo,
-        telefono_empleado = p_telefono,
-        direccionEmpleado = p_direccion
-    WHERE id_Empleado = p_idEmpleado;
-    
+    DELETE FROM vehiculos
+    WHERE ID_vehiculo = p_ID_vehiculo;
+
+    IF SQL%ROWCOUNT = 0 THEN
+        DBMS_OUTPUT.PUT_LINE('No se encontró ningún vehículo con el ID especificado.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Vehículo eliminado exitosamente.');
+    END IF;
+
     COMMIT;
-    DBMS_OUTPUT.PUT_LINE('Empleado actualizado exitosamente.');
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Error al intentar eliminar el vehículo: ' || SQLERRM);
+        ROLLBACK;
+END;
+/
+
+-- Procedimiento para Consultar un Vehículo por ID
+CREATE OR REPLACE PROCEDURE ConsultarVehiculo (
+    p_ID_vehiculo IN NUMBER          
+) IS
+    v_Marca vehiculos.Marca%TYPE;
+    v_Modelo vehiculos.Modelo%TYPE;
+    v_Ano vehiculos.Ano%TYPE;
+    v_Precio vehiculos.Precio%TYPE;
+    v_Color vehiculos.Color%TYPE;
+    v_Foto_URL vehiculos.Foto_URL%TYPE;
+BEGIN
+    SELECT Marca, Modelo, Ano, Precio, Color, Foto_URL
+    INTO v_Marca, v_Modelo, v_Ano, v_Precio, v_Color, v_Foto_URL
+    FROM vehiculos
+    WHERE ID_vehiculo = p_ID_vehiculo;
+
+    DBMS_OUTPUT.PUT_LINE('ID: ' || p_ID_vehiculo || ', Marca: ' || v_Marca || ', Modelo: ' || v_Modelo || ', Año: ' || v_Ano || ', Precio: ' || v_Precio || ', Color: ' || v_Color || ', Foto URL: ' || v_Foto_URL);
 EXCEPTION
     WHEN NO_DATA_FOUND THEN
-        DBMS_OUTPUT.PUT_LINE('No se encontr� ning�n empleado con el ID especificado.');
+        DBMS_OUTPUT.PUT_LINE('No se encontró ningún vehículo con el ID especificado.');
     WHEN OTHERS THEN
-        DBMS_OUTPUT.PUT_LINE('Se produjo un error al actualizar el empleado.');
-END EditarEmpleado;
+        DBMS_OUTPUT.PUT_LINE('Error al consultar el vehículo: ' || SQLERRM);
+END;
+/
 
-CREATE OR REPLACE PROCEDURE eliminar_empleado (
-    p_id_empleado IN VARCHAR2
-)
-IS
-BEGIN
-    DELETE FROM Empleado WHERE id_Empleado = p_id_empleado;
-    DBMS_OUTPUT.PUT_LINE('Empleado eliminado correctamente.');
-EXCEPTION
-    WHEN NO_DATA_FOUND THEN
-        DBMS_OUTPUT.PUT_LINE('No se encontr� ning�n empleado con el ID proporcionado.');
-    WHEN OTHERS THEN
-        DBMS_OUTPUT.PUT_LINE('Ocurri� un error al intentar eliminar al empleado.');
-END eliminar_empleado;
 
-CREATE OR REPLACE PROCEDURE AgregarProveedor(
-    p_ID_auto IN VARCHAR2,
-    p_nombreProveedor IN VARCHAR2,
-    p_productoProveedor IN VARCHAR2,
-    p_direccionProveedor IN VARCHAR2,
-    p_correoProveedor IN VARCHAR2,
-    p_telefonoProveedor IN NUMBER,
-    p_precioProveedor IN NUMBER
-)
-IS
+-- Procedimiento para Agregar Proveedor
+CREATE OR REPLACE PROCEDURE AgregarProveedor (
+    p_id_proveedor IN NUMBER,        
+    p_nombre IN VARCHAR2,
+    p_contacto IN VARCHAR2,
+    p_telefono IN VARCHAR2,
+    p_direccion IN VARCHAR2
+) IS
 BEGIN
-    INSERT INTO Proveedores (
-        ID_auto,
-        nombreProveedor,
-        produtoProveedor,
-        direccionProveedor,
-        correo_proveedor,
-        telefono_proveedor,
-        precio_Proveedor
-    ) VALUES (
-        p_ID_auto,
-        p_nombreProveedor,
-        p_productoProveedor,
-        p_direccionProveedor,
-        p_correoProveedor,
-        p_telefonoProveedor,
-        p_precioProveedor
+    INSERT INTO proveedores (
+        id_proveedor,
+        nombre,
+        contacto,
+        telefono,
+        direccion
+    )
+    VALUES (
+        p_id_proveedor,
+        p_nombre,
+        p_contacto,
+        p_telefono,
+        p_direccion
     );
     COMMIT;
     DBMS_OUTPUT.PUT_LINE('Proveedor agregado correctamente.');
 EXCEPTION
     WHEN OTHERS THEN
-        DBMS_OUTPUT.PUT_LINE('Error al agregar el proveedor: ' || SQLERRM);
         ROLLBACK;
-END AgregarProveedor;
-
-CREATE OR REPLACE PROCEDURE EditarProveedor (
-    p_idProveedor IN VARCHAR2,
-    p_ID_auto IN VARCHAR2,
-    p_nombreProveedor IN VARCHAR2,
-    p_productoProveedor IN VARCHAR2,
-    p_direccionProveedor IN VARCHAR2,
-    p_correoProveedor IN VARCHAR2,
-    p_telefonoProveedor IN NUMBER,
-    p_precioProveedor IN NUMBER
-)
-AS
-BEGIN
-    UPDATE Proveedores
-    SET ID_auto = p_ID_auto,
-        nombreProveedor = p_nombreProveedor,
-        produtoProveedor = p_productoProveedor,
-        direccionProveedor = p_direccionProveedor,
-        correo_proveedor = p_correoProveedor,
-        telefono_proveedor = p_telefonoProveedor,
-        precio_Proveedor = p_precioProveedor
-    WHERE id_Proveedor = p_idProveedor;
-    
-    COMMIT;
-    
-    DBMS_OUTPUT.PUT_LINE('Proveedor actualizado correctamente.');
-EXCEPTION
-    WHEN NO_DATA_FOUND THEN
-        DBMS_OUTPUT.PUT_LINE('El proveedor con ID ' || p_idProveedor || ' no existe.');
-    WHEN OTHERS THEN
-        DBMS_OUTPUT.PUT_LINE('Error al actualizar el proveedor: ' || SQLERRM);
+        DBMS_OUTPUT.PUT_LINE('Error al agregar proveedor: ' || SQLERRM);
 END;
+/
 
-
-CREATE OR REPLACE PROCEDURE eliminarProveedor (
-    p_idProveedor IN VARCHAR2
-)
-AS
+-- Procedimiento para Actualizar Proveedor
+CREATE OR REPLACE PROCEDURE ActualizarProveedor (
+    p_id_proveedor IN NUMBER,        
+    p_nombre IN VARCHAR2,
+    p_contacto IN VARCHAR2,
+    p_telefono IN VARCHAR2,
+    p_direccion IN VARCHAR2
+) IS
 BEGIN
-    DELETE FROM Proveedores WHERE id_Proveedor = p_idProveedor;
-    
+    UPDATE proveedores
+    SET nombre = p_nombre,
+        contacto = p_contacto,
+        telefono = p_telefono,
+        direccion = p_direccion
+    WHERE id_proveedor = p_id_proveedor;
+
     IF SQL%ROWCOUNT = 0 THEN
-        DBMS_OUTPUT.PUT_LINE('No se encontr� ning�n proveedor con el ID especificado.');
+        DBMS_OUTPUT.PUT_LINE('No se encontró ningún proveedor con el ID especificado para actualizar.');
     ELSE
-        DBMS_OUTPUT.PUT_LINE('Proveedor eliminado correctamente.');
-    END IF;
-EXCEPTION
-    WHEN OTHERS THEN
-        DBMS_OUTPUT.PUT_LINE('Error al intentar eliminar el proveedor: ' || SQLERRM);
-END;
-
-CREATE OR REPLACE PROCEDURE agregar_venta (
-    p_ID_Cliente IN VARCHAR2,
-    p_descripcion_Venta IN VARCHAR2,
-    p_cantidadProducto IN NUMBER,
-    p_id_Empleado IN VARCHAR2,
-    p_ID_auto IN VARCHAR2,
-    p_precio_Producto IN NUMBER,
-    p_fecha_venta IN DATE
-)
-IS
-BEGIN
-    INSERT INTO Ventas (
-        ID_Cliente, 
-        descripcion_Venta, 
-        cantidadProducto, 
-        id_Empleado, 
-        ID_auto, 
-        precio_Producto, 
-        fecha_venta
-    )
-    VALUES (
-        p_ID_Cliente, 
-        p_descripcion_Venta, 
-        p_cantidadProducto, 
-        p_id_Empleado, 
-        p_ID_auto, 
-        p_precio_Producto, 
-        p_fecha_venta
-    );
-    
-    COMMIT;
-    DBMS_OUTPUT.PUT_LINE('�Venta agregada correctamente!');
-EXCEPTION
-    WHEN OTHERS THEN
-        ROLLBACK;
-        DBMS_OUTPUT.PUT_LINE('Error al agregar la venta: ' || SQLERRM);
-END agregar_venta;
-
-CREATE OR REPLACE PROCEDURE editar_venta (
-    p_id_Venta IN VARCHAR2,
-    p_ID_Cliente IN VARCHAR2,
-    p_descripcion_Venta IN VARCHAR2,
-    p_cantidadProducto IN NUMBER,
-    p_id_Empleado IN VARCHAR2,
-    p_ID_auto IN VARCHAR2,
-    p_precio_Producto IN NUMBER,
-    p_fecha_venta IN DATE
-)
-AS
-BEGIN
-    UPDATE Ventas
-    SET 
-        ID_Cliente = p_ID_Cliente,
-        descripcion_Venta = p_descripcion_Venta,
-        cantidadProducto = p_cantidadProducto,
-        id_Empleado = p_id_Empleado,
-        ID_auto = p_ID_auto,
-        precio_Producto = p_precio_Producto,
-        fecha_venta = p_fecha_venta
-    WHERE 
-        id_Venta = p_id_Venta;
-    
-    COMMIT;
-    
-    DBMS_OUTPUT.PUT_LINE('La venta con ID ' || p_id_Venta || ' ha sido editada exitosamente.');
-EXCEPTION
-    WHEN OTHERS THEN
-        ROLLBACK;
-        DBMS_OUTPUT.PUT_LINE('Error al editar la venta: ' || SQLERRM);
-END editar_venta;
-
-CREATE OR REPLACE PROCEDURE eliminar_venta (
-    p_id_Venta IN VARCHAR2
-)
-IS
-BEGIN
-    DELETE FROM Ventas
-    WHERE id_Venta = p_id_Venta;
-    
-    IF SQL%ROWCOUNT = 0 THEN
-        DBMS_OUTPUT.PUT_LINE('No se encontr� ninguna venta con el ID especificado: ' || p_id_Venta);
-    ELSE
-        DBMS_OUTPUT.PUT_LINE('La venta con ID ' || p_id_Venta || ' ha sido eliminada correctamente.');
         COMMIT;
+        DBMS_OUTPUT.PUT_LINE('Proveedor actualizado exitosamente.');
     END IF;
 EXCEPTION
     WHEN OTHERS THEN
         ROLLBACK;
-        DBMS_OUTPUT.PUT_LINE('Ocurri� un error al intentar eliminar la venta: ' || SQLERRM);
-END eliminar_venta;
-
-
-CREATE OR REPLACE PROCEDURE MostrarClientes IS
-    CURSOR clientes_cursor IS
-        SELECT ID_Cliente, Nombre, PrimerApellido, SegundoApellido, Direccion, Telefono, Correo
-        FROM Cliente;
-    cliente_id Cliente.ID_Cliente%TYPE;
-    cliente_nombre Cliente.Nombre%TYPE;
-    cliente_apellido1 Cliente.PrimerApellido%TYPE;
-    cliente_apellido2 Cliente.SegundoApellido%TYPE;
-    cliente_direccion Cliente.Direccion%TYPE;
-    cliente_telefono Cliente.Telefono%TYPE;
-    cliente_correo Cliente.Correo%TYPE;
-BEGIN
-    OPEN clientes_cursor;
-    LOOP
-        FETCH clientes_cursor INTO cliente_id, cliente_nombre, cliente_apellido1, cliente_apellido2, cliente_direccion, cliente_telefono, cliente_correo;
-        EXIT WHEN clientes_cursor%NOTFOUND;
-        DBMS_OUTPUT.PUT_LINE('ID: ' || cliente_id || ', Nombre: ' || cliente_nombre || ' ' || cliente_apellido1 || ' ' || cliente_apellido2 || ', Direcci�n: ' || cliente_direccion || ', Tel�fono: ' || cliente_telefono || ', Correo: ' || cliente_correo);
-    END LOOP;
-    CLOSE clientes_cursor;
-END MostrarClientes;
-
-CREATE OR REPLACE PROCEDURE MostrarAutos IS
-    CURSOR autos_cursor IS
-        SELECT ID_auto, Marca, Modelo, Ano, Precio, Color, Descripcion, Fecha_disponibilidad
-        FROM Autos;
-
-    auto_id Autos.ID_auto%TYPE;
-    auto_marca Autos.Marca%TYPE;
-    auto_modelo Autos.Modelo%TYPE;
-    auto_ano Autos.Ano%TYPE;
-    auto_precio Autos.Precio%TYPE;
-    auto_color Autos.Color%TYPE;
-    auto_descripcion Autos.Descripcion%TYPE;
-    auto_fecha_disponibilidad Autos.Fecha_disponibilidad%TYPE;
-BEGIN
-    OPEN autos_cursor;
-    LOOP
-        FETCH autos_cursor INTO auto_id, auto_marca, auto_modelo, auto_ano, auto_precio, auto_color, auto_descripcion, auto_fecha_disponibilidad;
-        EXIT WHEN autos_cursor%NOTFOUND;
-        DBMS_OUTPUT.PUT_LINE('ID: ' || auto_id || ', Marca: ' || auto_marca || ', Modelo: ' || auto_modelo || ', A�o: ' || auto_ano || ', Precio: ' || auto_precio || ', Color: ' || auto_color || ', Descripci�n: ' || auto_descripcion || ', Fecha de Disponibilidad: ' || auto_fecha_disponibilidad);
-    END LOOP;
-    CLOSE autos_cursor;
+        DBMS_OUTPUT.PUT_LINE('Error al actualizar proveedor: ' || SQLERRM);
 END;
+/  
 
+-- Procedimiento para Eliminar Proveedor
+CREATE OR REPLACE PROCEDURE EliminarProveedor (
+    p_id_proveedor IN NUMBER         
+) IS
+BEGIN
+    DELETE FROM proveedores
+    WHERE id_proveedor = p_id_proveedor;
 
-INSERT INTO Autos (ID_auto, Marca, Modelo, Ano, Precio, Color, Descripcion, Fecha_disponibilidad) VALUES 
-('A001', 'Dodge', 'Charger', 1970, 45000.00, 'Negro', 'Dodge Charger 1970, famoso por su apariencia en pel�culas y carreras', TO_DATE('2024-08-01', 'YYYY-MM-DD'));
-INSERT INTO Autos (ID_auto, Marca, Modelo, Ano, Precio, Color, Descripcion, Fecha_disponibilidad) VALUES 
-('A002', 'Dodge', 'Challenger', 1971, 42000.00, 'Rojo', 'Dodge Challenger 1971, un muscle car ic�nico con motor HEMI', TO_DATE('2024-08-01', 'YYYY-MM-DD'));
-INSERT INTO Autos (ID_auto, Marca, Modelo, Ano, Precio, Color, Descripcion, Fecha_disponibilidad) VALUES 
-('A003', 'Dodge', 'Viper GTS', 1996, 75000.00, 'Azul', 'Dodge Viper GTS 1996, un superdeportivo americano con motor V10', TO_DATE('2024-08-01', 'YYYY-MM-DD'));
+    IF SQL%ROWCOUNT = 0 THEN
+        DBMS_OUTPUT.PUT_LINE('No se encontró ningún proveedor con el ID especificado.');
+    ELSE
+        COMMIT;
+        DBMS_OUTPUT.PUT_LINE('Proveedor eliminado exitosamente.');
+    END IF;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        DBMS_OUTPUT.PUT_LINE('Error al eliminar proveedor: ' || SQLERRM);
+END;
+/
 
-INSERT INTO Autos (ID_auto, Marca, Modelo, Ano, Precio, Color, Descripcion, Fecha_disponibilidad) VALUES 
-('A004', 'Ford', 'Mustang Boss 302', 1969, 50000.00, 'Amarillo', 'Ford Mustang Boss 302 1969, uno de los Mustangs m�s potentes y buscados', TO_DATE('2024-08-01', 'YYYY-MM-DD'));
-INSERT INTO Autos (ID_auto, Marca, Modelo, Ano, Precio, Color, Descripcion, Fecha_disponibilidad) VALUES 
-('A005', 'Ford', 'Mustang GT', 1987, 30000.00, 'Blanco', 'Ford Mustang GT 1987, un cl�sico de la era moderna con motor V8', TO_DATE('2024-08-01', 'YYYY-MM-DD'));
-INSERT INTO Autos (ID_auto, Marca, Modelo, Ano, Precio, Color, Descripcion, Fecha_disponibilidad) VALUES 
-('A006', 'Ford', 'Mustang Cobra R', 1993, 55000.00, 'Negro', 'Ford Mustang Cobra R 1993, una edici�n limitada dise�ada para las carreras', TO_DATE('2024-08-01', 'YYYY-MM-DD'));
-INSERT INTO Autos (ID_auto, Marca, Modelo, Ano, Precio, Color, Descripcion, Fecha_disponibilidad) VALUES 
-('A007', 'Ford', 'Thunderbird', 1955, 65000.00, 'Rojo', 'Ford Thunderbird 1955, un ic�nico auto deportivo de los 50', TO_DATE('2024-08-01', 'YYYY-MM-DD'));
-
-INSERT INTO Autos (ID_auto, Marca, Modelo, Ano, Precio, Color, Descripcion, Fecha_disponibilidad) VALUES 
-('A008', 'Chevrolet', 'Corvette Stingray', 1970, 60000.00, 'Azul', 'Chevrolet Corvette Stingray 1970, un cl�sico americano con dise�o aerodin�mico', TO_DATE('2024-08-01', 'YYYY-MM-DD'));
-INSERT INTO Autos (ID_auto, Marca, Modelo, Ano, Precio, Color, Descripcion, Fecha_disponibilidad) VALUES 
-('A009', 'Chevrolet', 'Camaro Z28', 1979, 40000.00, 'Rojo', 'Chevrolet Camaro Z28 1979, un muscle car popular con estilo agresivo', TO_DATE('2024-08-01', 'YYYY-MM-DD'));
-INSERT INTO Autos (ID_auto, Marca, Modelo, Ano, Precio, Color, Descripcion, Fecha_disponibilidad) VALUES 
-('A010', 'Chevrolet', 'Impala SS', 1996, 35000.00, 'Negro', 'Chevrolet Impala SS 1996, una versi�n de alto rendimiento del Impala', TO_DATE('2024-08-01', 'YYYY-MM-DD'));
-INSERT INTO Autos (ID_auto, Marca, Modelo, Ano, Precio, Color, Descripcion, Fecha_disponibilidad) VALUES 
-('A011', 'Chevrolet', 'El Camino', 1987, 32000.00, 'Blanco', 'Chevrolet El Camino 1987, un veh�culo h�brido entre auto y camioneta', TO_DATE('2024-08-01', 'YYYY-MM-DD'));
-
-INSERT INTO Autos (ID_auto, Marca, Modelo, Ano, Precio, Color, Descripcion, Fecha_disponibilidad) VALUES 
-('A012', 'Chevrolet', 'Monte Carlo SS', 1985, 38000.00, 'Negro', 'Chevrolet Monte Carlo SS 1985, conocido por su desempe�o en NASCAR', TO_DATE('2024-08-01', 'YYYY-MM-DD'));
-INSERT INTO Autos (ID_auto, Marca, Modelo, Ano, Precio, Color, Descripcion, Fecha_disponibilidad) VALUES 
-('A013', 'Dodge', 'Daytona', 1969, 68000.00, 'Naranja', 'Dodge Daytona 1969, un auto de carreras dise�ado para alta velocidad', TO_DATE('2024-08-01', 'YYYY-MM-DD'));
-INSERT INTO Autos (ID_auto, Marca, Modelo, Ano, Precio, Color, Descripcion, Fecha_disponibilidad) VALUES 
-('A014', 'Ford', 'GT40', 1966, 120000.00, 'Azul', 'Ford GT40 1966, legendario en Le Mans por vencer a Ferrari', TO_DATE('2024-08-01', 'YYYY-MM-DD'));
-INSERT INTO Autos (ID_auto, Marca, Modelo, Ano, Precio, Color, Descripcion, Fecha_disponibilidad) VALUES 
-('A015', 'Chevrolet', 'Bel Air', 1957, 70000.00, 'Turquesa', 'Chevrolet Bel Air 1957, un �cono de la cultura automotriz americana', TO_DATE('2024-08-01', 'YYYY-MM-DD'));
-
-
-INSERT INTO Proveedores (id_Proveedor, ID_auto, nombreProveedor, produtoProveedor, direccionProveedor, correo_proveedor, telefono_proveedor, precio_Proveedor)VALUES
-('P001', 'A001', 'Dodge Company', 'Partes para Charger', 'San Jos�, Avenida Central', 'contacto@dodgecompany.com', 85012345, 45000.00);
-
-INSERT INTO Proveedores (id_Proveedor, ID_auto, nombreProveedor, produtoProveedor, direccionProveedor, correo_proveedor, telefono_proveedor, precio_Proveedor)VALUES
-('P002', 'A004', 'Ford Motors', 'Partes para Mustang', 'Cartago, Avenida 3', 'soporte@fordmotors.com', 86023456, 50000.00);
-
-INSERT INTO Proveedores (id_Proveedor, ID_auto, nombreProveedor, produtoProveedor, direccionProveedor, correo_proveedor, telefono_proveedor, precio_Proveedor) VALUES 
-('P003', 'A008', 'Chevrolet Suppliers', 'Partes para Corvette', 'Heredia, Calle Principal', 'ventas@chevroletsuppliers.com', 87034567, 60000.00);
-
-
---auditoria
-
-
--- Creación de la tabla de auditoría
-CREATE TABLE Auditoria (
-    ID_Auditoria NUMBER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    Nombre_Tabla VARCHAR2(50),
-    Operacion VARCHAR2(10),
-    ID_Registro VARCHAR2(10),
-    Usuario VARCHAR2(50),
-    Fecha_Hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    Valores_Antiguos CLOB,
-    Valores_Nuevos CLOB
-);
-
--- Trigger para la tabla Autos
-CREATE OR REPLACE TRIGGER trg_audit_Autos
-AFTER INSERT OR UPDATE OR DELETE ON Autos
+-- AUDITORIA
+-- Trigger para la tabla vehiculos
+CREATE OR REPLACE TRIGGER trg_audit_vehiculos
+AFTER INSERT OR UPDATE OR DELETE ON vehiculos
 FOR EACH ROW
 DECLARE
     v_operacion VARCHAR2(10);
 BEGIN
     IF INSERTING THEN
         v_operacion := 'INSERT';
-        INSERT INTO Auditoria (Nombre_Tabla, Operacion, ID_Registro, Usuario, Valores_Nuevos)
-        VALUES ('Autos', v_operacion, :NEW.ID_auto, USER, TO_CLOB('Marca=' || :NEW.Marca || ', Modelo=' || :NEW.Modelo || ', Ano=' || :NEW.Ano || ', Precio=' || :NEW.Precio || ', Color=' || :NEW.Color || ', Descripcion=' || :NEW.Descripcion || ', Fecha_disponibilidad=' || :NEW.Fecha_disponibilidad));
+        INSERT INTO Auditoria_General (Nombre_Tabla, Operacion, ID_Registro, Usuario, Detalles)
+        VALUES (
+            'vehiculos',
+            v_operacion,
+            :NEW.id_vehiculo,
+            USER,
+            'Modelo=' || :NEW.modelo || 
+            ', Marca=' || :NEW.marca || 
+            ', Año=' || :NEW.ano || 
+            ', Precio=' || :NEW.precio || 
+            ', Estado=' || :NEW.estado || 
+            ', Color=' || :NEW.color || 
+            ', VIN=' || :NEW.vin || 
+            ', Categoria_ID=' || :NEW.categoria_id || 
+            ', Proveedor_ID=' || :NEW.proveedor_id || 
+            ', Foto_URL=' || :NEW.Foto_URL
+        );
     ELSIF UPDATING THEN
         v_operacion := 'UPDATE';
-        INSERT INTO Auditoria (Nombre_Tabla, Operacion, ID_Registro, Usuario, Valores_Antiguos, Valores_Nuevos)
-        VALUES ('Autos', v_operacion, :OLD.ID_auto, USER, TO_CLOB('Marca=' || :OLD.Marca || ', Modelo=' || :OLD.Modelo || ', Ano=' || :OLD.Ano || ', Precio=' || :OLD.Precio || ', Color=' || :OLD.Color || ', Descripcion=' || :OLD.Descripcion || ', Fecha_disponibilidad=' || :OLD.Fecha_disponibilidad),
-                                            TO_CLOB('Marca=' || :NEW.Marca || ', Modelo=' || :NEW.Modelo || ', Ano=' || :NEW.Ano || ', Precio=' || :NEW.Precio || ', Color=' || :NEW.Color || ', Descripcion=' || :NEW.Descripcion || ', Fecha_disponibilidad=' || :NEW.Fecha_disponibilidad));
+        INSERT INTO Auditoria_General (Nombre_Tabla, Operacion, ID_Registro, Usuario, Detalles)
+        VALUES (
+            'vehiculos',
+            v_operacion,
+            :OLD.id_vehiculo,
+            USER,
+            'Modelo=' || :OLD.modelo || 
+            ', Marca=' || :OLD.marca || 
+            ', Año=' || :OLD.ano || 
+            ', Precio=' || :OLD.precio || 
+            ', Estado=' || :OLD.estado || 
+            ', Color=' || :OLD.color || 
+            ', VIN=' || :OLD.vin || 
+            ', Categoria_ID=' || :OLD.categoria_id || 
+            ', Proveedor_ID=' || :OLD.proveedor_id || 
+            ', Foto_URL=' || :OLD.Foto_URL || 
+            ' -> ' ||
+            'Modelo=' || :NEW.modelo || 
+            ', Marca=' || :NEW.marca || 
+            ', Año=' || :NEW.ano || 
+            ', Precio=' || :NEW.precio || 
+            ', Estado=' || :NEW.estado || 
+            ', Color=' || :NEW.color || 
+            ', VIN=' || :NEW.vin || 
+            ', Categoria_ID=' || :NEW.categoria_id || 
+            ', Proveedor_ID=' || :NEW.proveedor_id || 
+            ', Foto_URL=' || :NEW.Foto_URL
+        );
     ELSIF DELETING THEN
         v_operacion := 'DELETE';
-        INSERT INTO Auditoria (Nombre_Tabla, Operacion, ID_Registro, Usuario, Valores_Antiguos)
-        VALUES ('Autos', v_operacion, :OLD.ID_auto, USER, TO_CLOB('Marca=' || :OLD.Marca || ', Modelo=' || :OLD.Modelo || ', Ano=' || :OLD.Ano || ', Precio=' || :OLD.Precio || ', Color=' || :OLD.Color || ', Descripcion=' || :OLD.Descripcion || ', Fecha_disponibilidad=' || :OLD.Fecha_disponibilidad));
+        INSERT INTO Auditoria_General (Nombre_Tabla, Operacion, ID_Registro, Usuario, Detalles)
+        VALUES (
+            'vehiculos',
+            v_operacion,
+            :OLD.id_vehiculo,
+            USER,
+            'Modelo=' || :OLD.modelo || 
+            ', Marca=' || :OLD.marca || 
+            ', Año=' || :OLD.ano || 
+            ', Precio=' || :OLD.precio || 
+            ', Estado=' || :OLD.estado || 
+            ', Color=' || :OLD.color || 
+            ', VIN=' || :OLD.vin || 
+            ', Categoria_ID=' || :OLD.categoria_id || 
+            ', Proveedor_ID=' || :OLD.proveedor_id || 
+            ', Foto_URL=' || :OLD.Foto_URL
+        );
     END IF;
 END;
 /
 
--- Trigger para la tabla Empleado
-CREATE OR REPLACE TRIGGER trg_audit_Empleado
-AFTER INSERT OR UPDATE OR DELETE ON Empleado
+-- Trigger para la tabla proveedores
+CREATE OR REPLACE TRIGGER trg_audit_proveedores
+AFTER INSERT OR UPDATE OR DELETE ON proveedores
 FOR EACH ROW
 DECLARE
     v_operacion VARCHAR2(10);
 BEGIN
     IF INSERTING THEN
         v_operacion := 'INSERT';
-        INSERT INTO Auditoria (Nombre_Tabla, Operacion, ID_Registro, Usuario, Valores_Nuevos)
-        VALUES ('Empleado', v_operacion, :NEW.id_Empleado, USER, TO_CLOB('NombreEmpleado=' || :NEW.nombreEmpleado || ', ApellidoEmpleado1=' || :NEW.apellidoEmpleado1 || ', ApellidoEmpleado2=' || :NEW.apellidoEmpleado2 || ', Correo_empleado=' || :NEW.correo_empleado || ', Telefono_empleado=' || :NEW.telefono_empleado || ', DireccionEmpleado=' || :NEW.direccionEmpleado));
+        INSERT INTO Auditoria_General (Nombre_Tabla, Operacion, ID_Registro, Usuario, Detalles)
+        VALUES (
+            'proveedores',
+            v_operacion,
+            :NEW.id_proveedor,
+            USER,
+            'Nombre=' || :NEW.nombre || 
+            ', Contacto=' || :NEW.contacto || 
+            ', Telefono=' || :NEW.telefono || 
+            ', Direccion=' || :NEW.direccion
+        );
     ELSIF UPDATING THEN
         v_operacion := 'UPDATE';
-        INSERT INTO Auditoria (Nombre_Tabla, Operacion, ID_Registro, Usuario, Valores_Antiguos, Valores_Nuevos)
-        VALUES ('Empleado', v_operacion, :OLD.id_Empleado, USER, TO_CLOB('NombreEmpleado=' || :OLD.nombreEmpleado || ', ApellidoEmpleado1=' || :OLD.apellidoEmpleado1 || ', ApellidoEmpleado2=' || :OLD.apellidoEmpleado2 || ', Correo_empleado=' || :OLD.correo_empleado || ', Telefono_empleado=' || :OLD.telefono_empleado || ', DireccionEmpleado=' || :OLD.direccionEmpleado),
-                                            TO_CLOB('NombreEmpleado=' || :NEW.nombreEmpleado || ', ApellidoEmpleado1=' || :NEW.apellidoEmpleado1 || ', ApellidoEmpleado2=' || :NEW.apellidoEmpleado2 || ', Correo_empleado=' || :NEW.correo_empleado || ', Telefono_empleado=' || :NEW.telefono_empleado || ', DireccionEmpleado=' || :NEW.direccionEmpleado));
+        INSERT INTO Auditoria_General (Nombre_Tabla, Operacion, ID_Registro, Usuario, Detalles)
+        VALUES (
+            'proveedores',
+            v_operacion,
+            :OLD.id_proveedor,
+            USER,
+            'Nombre=' || :OLD.nombre || 
+            ', Contacto=' || :OLD.contacto || 
+            ', Telefono=' || :OLD.telefono || 
+            ', Direccion=' || :OLD.direccion || 
+            ' -> ' ||
+            'Nombre=' || :NEW.nombre || 
+            ', Contacto=' || :NEW.contacto || 
+            ', Telefono=' || :NEW.telefono || 
+            ', Direccion=' || :NEW.direccion
+        );
     ELSIF DELETING THEN
         v_operacion := 'DELETE';
-        INSERT INTO Auditoria (Nombre_Tabla, Operacion, ID_Registro, Usuario, Valores_Antiguos)
-        VALUES ('Empleado', v_operacion, :OLD.id_Empleado, USER, TO_CLOB('NombreEmpleado=' || :OLD.nombreEmpleado || ', ApellidoEmpleado1=' || :OLD.apellidoEmpleado1 || ', ApellidoEmpleado2=' || :OLD.apellidoEmpleado2 || ', Correo_empleado=' || :OLD.correo_empleado || ', Telefono_empleado=' || :OLD.telefono_empleado || ', DireccionEmpleado=' || :OLD.direccionEmpleado));
+        INSERT INTO Auditoria_General (Nombre_Tabla, Operacion, ID_Registro, Usuario, Detalles)
+        VALUES (
+            'proveedores',
+            v_operacion,
+            :OLD.id_proveedor,
+            USER,
+            'Nombre=' || :OLD.nombre || 
+            ', Contacto=' || :OLD.contacto || 
+            ', Telefono=' || :OLD.telefono || 
+            ', Direccion=' || :OLD.direccion
+        );
     END IF;
 END;
 /
 
--- Trigger para la tabla Proveedores
-CREATE OR REPLACE TRIGGER trg_audit_Proveedores
-AFTER INSERT OR UPDATE OR DELETE ON Proveedores
+-- Trigger para la tabla clientes
+CREATE OR REPLACE TRIGGER trg_audit_clientes
+AFTER INSERT OR UPDATE OR DELETE ON clientes
 FOR EACH ROW
 DECLARE
     v_operacion VARCHAR2(10);
 BEGIN
     IF INSERTING THEN
         v_operacion := 'INSERT';
-        INSERT INTO Auditoria (Nombre_Tabla, Operacion, ID_Registro, Usuario, Valores_Nuevos)
-        VALUES ('Proveedores', v_operacion, :NEW.id_Proveedor, USER, TO_CLOB('ID_auto=' || :NEW.ID_auto || ', NombreProveedor=' || :NEW.nombreProveedor || ', ProductoProveedor=' || :NEW.produtoProveedor || ', DireccionProveedor=' || :NEW.direccionProveedor || ', Correo_proveedor=' || :NEW.correo_proveedor || ', Telefono_proveedor=' || :NEW.telefono_proveedor || ', Precio_Proveedor=' || :NEW.precio_Proveedor));
+        INSERT INTO Auditoria_General (Nombre_Tabla, Operacion, ID_Registro, Usuario, Detalles)
+        VALUES (
+            'clientes',
+            v_operacion,
+            :NEW.id_cliente,
+            USER,
+            'Nombre=' || :NEW.nombre || 
+            ', Apellido=' || :NEW.apellido || 
+            ', Email=' || :NEW.email || 
+            ', Telefono=' || :NEW.telefono || 
+            ', Direccion=' || :NEW.direccion || 
+            ', Fecha_registro=' || TO_CHAR(:NEW.fecha_registro, 'YYYY-MM-DD HH24:MI:SS')
+        );
     ELSIF UPDATING THEN
         v_operacion := 'UPDATE';
-        INSERT INTO Auditoria (Nombre_Tabla, Operacion, ID_Registro, Usuario, Valores_Antiguos, Valores_Nuevos)
-        VALUES ('Proveedores', v_operacion, :OLD.id_Proveedor, USER, TO_CLOB('ID_auto=' || :OLD.ID_auto || ', NombreProveedor=' || :OLD.nombreProveedor || ', ProductoProveedor=' || :OLD.produtoProveedor || ', DireccionProveedor=' || :OLD.direccionProveedor || ', Correo_proveedor=' || :OLD.correo_proveedor || ', Telefono_proveedor=' || :OLD.telefono_proveedor || ', Precio_Proveedor=' || :OLD.precio_Proveedor),
-                                            TO_CLOB('ID_auto=' || :NEW.ID_auto || ', NombreProveedor=' || :NEW.nombreProveedor || ', ProductoProveedor=' || :NEW.produtoProveedor || ', DireccionProveedor=' || :NEW.direccionProveedor || ', Correo_proveedor=' || :NEW.correo_proveedor || ', Telefono_proveedor=' || :NEW.telefono_proveedor || ', Precio_Proveedor=' || :NEW.precio_Proveedor));
+        INSERT INTO Auditoria_General (Nombre_Tabla, Operacion, ID_Registro, Usuario, Detalles)
+        VALUES (
+            'clientes',
+            v_operacion,
+            :OLD.id_cliente,
+            USER,
+            'Nombre=' || :OLD.nombre || 
+            ', Apellido=' || :OLD.apellido || 
+            ', Email=' || :OLD.email || 
+            ', Telefono=' || :OLD.telefono || 
+            ', Direccion=' || :OLD.direccion || 
+            ', Fecha_registro=' || TO_CHAR(:OLD.fecha_registro, 'YYYY-MM-DD HH24:MI:SS') || 
+            ' -> ' ||
+            'Nombre=' || :NEW.nombre || 
+            ', Apellido=' || :NEW.apellido || 
+            ', Email=' || :NEW.email || 
+            ', Telefono=' || :NEW.telefono || 
+            ', Direccion=' || :NEW.direccion || 
+            ', Fecha_registro=' || TO_CHAR(:NEW.fecha_registro, 'YYYY-MM-DD HH24:MI:SS')
+        );
     ELSIF DELETING THEN
         v_operacion := 'DELETE';
-        INSERT INTO Auditoria (Nombre_Tabla, Operacion, ID_Registro, Usuario, Valores_Antiguos)
-        VALUES ('Proveedores', v_operacion, :OLD.id_Proveedor, USER, TO_CLOB('ID_auto=' || :OLD.ID_auto || ', NombreProveedor=' || :OLD.nombreProveedor || ', ProductoProveedor=' || :OLD.produtoProveedor || ', DireccionProveedor=' || :OLD.direccionProveedor || ', Correo_proveedor=' || :OLD.correo_proveedor || ', Telefono_proveedor=' || :OLD.telefono_proveedor || ', Precio_Proveedor=' || :OLD.precio_Proveedor));
+        INSERT INTO Auditoria_General (Nombre_Tabla, Operacion, ID_Registro, Usuario, Detalles)
+        VALUES (
+            'clientes',
+            v_operacion,
+            :OLD.id_cliente,
+            USER,
+            'Nombre=' || :OLD.nombre || 
+            ', Apellido=' || :OLD.apellido || 
+            ', Email=' || :OLD.email || 
+            ', Telefono=' || :OLD.telefono || 
+            ', Direccion=' || :OLD.direccion || 
+            ', Fecha_registro=' || TO_CHAR(:OLD.fecha_registro, 'YYYY-MM-DD HH24:MI:SS')
+        );
     END IF;
 END;
 /
 
--- Trigger para la tabla Cliente
-CREATE OR REPLACE TRIGGER trg_audit_Cliente
-AFTER INSERT OR UPDATE OR DELETE ON Cliente
+-- Trigger para la tabla facturas
+CREATE OR REPLACE TRIGGER trg_audit_facturas
+AFTER INSERT OR UPDATE OR DELETE ON facturas
 FOR EACH ROW
 DECLARE
     v_operacion VARCHAR2(10);
 BEGIN
     IF INSERTING THEN
         v_operacion := 'INSERT';
-        INSERT INTO Auditoria (Nombre_Tabla, Operacion, ID_Registro, Usuario, Valores_Nuevos)
-        VALUES ('Cliente', v_operacion, :NEW.ID_Cliente, USER, TO_CLOB('Nombre=' || :NEW.Nombre || ', PrimerApellido=' || :NEW.PrimerApellido || ', SegundoApellido=' || :NEW.SegundoApellido || ', Direccion=' || :NEW.Direccion || ', Telefono=' || :NEW.Telefono || ', Correo=' || :NEW.Correo));
+        INSERT INTO Auditoria_General (Nombre_Tabla, Operacion, ID_Registro, Usuario, Detalles)
+        VALUES (
+            'facturas',
+            v_operacion,
+            :NEW.id_factura,
+            USER,
+            'Cliente_ID=' || :NEW.cliente_id ||
+            ', Fecha=' || :NEW.fecha ||
+            ', Total=' || :NEW.total
+        );
     ELSIF UPDATING THEN
         v_operacion := 'UPDATE';
-        INSERT INTO Auditoria (Nombre_Tabla, Operacion, ID_Registro, Usuario, Valores_Antiguos, Valores_Nuevos)
-        VALUES ('Cliente', v_operacion, :OLD.ID_Cliente, USER, TO_CLOB('Nombre=' || :OLD.Nombre || ', PrimerApellido=' || :OLD.PrimerApellido || ', SegundoApellido=' || :OLD.SegundoApellido || ', Direccion=' || :OLD.Direccion || ', Telefono=' || :OLD.Telefono || ', Correo=' || :OLD.Correo),
-                                            TO_CLOB('Nombre=' || :NEW.Nombre || ', PrimerApellido=' || :NEW.PrimerApellido || ', SegundoApellido=' || :NEW.SegundoApellido || ', Direccion=' || :NEW.Direccion || ', Telefono=' || :NEW.Telefono || ', Correo=' || :NEW.Correo));
+        INSERT INTO Auditoria_General (Nombre_Tabla, Operacion, ID_Registro, Usuario, Detalles)
+        VALUES (
+            'facturas',
+            v_operacion,
+            :OLD.id_factura,
+            USER,
+            'Cliente_ID=' || :OLD.cliente_id ||
+            ', Fecha=' || :OLD.fecha ||
+            ', Total=' || :OLD.total ||
+            ' -> ' ||
+            'Cliente_ID=' || :NEW.cliente_id ||
+            ', Fecha=' || :NEW.fecha ||
+            ', Total=' || :NEW.total
+        );
     ELSIF DELETING THEN
         v_operacion := 'DELETE';
-        INSERT INTO Auditoria (Nombre_Tabla, Operacion, ID_Registro, Usuario, Valores_Antiguos)
-        VALUES ('Cliente', v_operacion, :OLD.ID_Cliente, USER, TO_CLOB('Nombre=' || :OLD.Nombre || ', PrimerApellido=' || :OLD.PrimerApellido || ', SegundoApellido=' || :OLD.SegundoApellido || ', Direccion=' || :OLD.Direccion || ', Telefono=' || :OLD.Telefono || ', Correo=' || :OLD.Correo));
+        INSERT INTO Auditoria_General (Nombre_Tabla, Operacion, ID_Registro, Usuario, Detalles)
+        VALUES (
+            'facturas',
+            v_operacion,
+            :OLD.id_factura,
+            USER,
+            'Cliente_ID=' || :OLD.cliente_id ||
+            ', Fecha=' || :OLD.fecha ||
+            ', Total=' || :OLD.total
+        );
     END IF;
 END;
 /
 
--- Trigger para la tabla Ventas
-CREATE OR REPLACE TRIGGER trg_audit_Ventas
-AFTER INSERT OR UPDATE OR DELETE ON Ventas
+
+-- Trigger para la tabla detalle_factura
+CREATE OR REPLACE TRIGGER trg_audit_detalle_factura
+AFTER INSERT OR UPDATE OR DELETE ON detalle_factura
 FOR EACH ROW
 DECLARE
     v_operacion VARCHAR2(10);
 BEGIN
     IF INSERTING THEN
         v_operacion := 'INSERT';
-        INSERT INTO Auditoria (Nombre_Tabla, Operacion, ID_Registro, Usuario, Valores_Nuevos)
-        VALUES ('Ventas', v_operacion, :NEW.id_Venta, USER, TO_CLOB('ID_Cliente=' || :NEW.ID_Cliente || ', Descripcion_Venta=' || :NEW.descripcion_Venta || ', CantidadProducto=' || :NEW.cantidadProducto || ', ID_Empleado=' || :NEW.id_Empleado || ', ID_auto=' || :NEW.ID_auto || ', Precio_Producto=' || :NEW.precio_Producto || ', Fecha_venta=' || :NEW.fecha_venta));
+        INSERT INTO Auditoria_General (Nombre_Tabla, Operacion, ID_Registro, Usuario, Detalles)
+        VALUES (
+            'detalle_factura',
+            v_operacion,
+            :NEW.id_detalle_factura,
+            USER,
+            'Factura_ID=' || :NEW.factura_id ||
+            ', Vehiculo_ID=' || :NEW.vehiculo_id ||
+            ', Cantidad=' || :NEW.cantidad ||
+            ', Precio_Unitario=' || :NEW.precio_unitario
+        );
     ELSIF UPDATING THEN
         v_operacion := 'UPDATE';
-        INSERT INTO Auditoria (Nombre_Tabla, Operacion, ID_Registro, Usuario, Valores_Antiguos, Valores_Nuevos)
-        VALUES ('Ventas', v_operacion, :OLD.id_Venta, USER, TO_CLOB('ID_Cliente=' || :OLD.ID_Cliente || ', Descripcion_Venta=' || :OLD.descripcion_Venta || ', CantidadProducto=' || :OLD.cantidadProducto || ', ID_Empleado=' || :OLD.id_Empleado || ', ID_auto=' || :OLD.ID_auto || ', Precio_Producto=' || :OLD.precio_Producto || ', Fecha_venta=' || :OLD.fecha_venta),
-                                            TO_CLOB('ID_Cliente=' || :NEW.ID_Cliente || ', Descripcion_Venta=' || :NEW.descripcion_Venta || ', CantidadProducto=' || :NEW.cantidadProducto || ', ID_Empleado=' || :NEW.id_Empleado || ', ID_auto=' || :NEW.ID_auto || ', Precio_Producto=' || :NEW.precio_Producto || ', Fecha_venta=' || :NEW.fecha_venta));
+        INSERT INTO Auditoria_General (Nombre_Tabla, Operacion, ID_Registro, Usuario, Detalles)
+        VALUES (
+            'detalle_factura',
+            v_operacion,
+            :OLD.id_detalle_factura,
+            USER,
+            'Factura_ID=' || :OLD.factura_id ||
+            ', Vehiculo_ID=' || :OLD.vehiculo_id ||
+            ', Cantidad=' || :OLD.cantidad ||
+            ', Precio_Unitario=' || :OLD.precio_unitario ||
+            ' -> ' ||
+            'Factura_ID=' || :NEW.factura_id ||
+            ', Vehiculo_ID=' || :NEW.vehiculo_id ||
+            ', Cantidad=' || :NEW.cantidad ||
+            ', Precio_Unitario=' || :NEW.precio_unitario
+        );
     ELSIF DELETING THEN
         v_operacion := 'DELETE';
-        INSERT INTO Auditoria (Nombre_Tabla, Operacion, ID_Registro, Usuario, Valores_Antiguos)
-        VALUES ('Ventas', v_operacion, :OLD.id_Venta, USER, TO_CLOB('ID_Cliente=' || :OLD.ID_Cliente || ', Descripcion_Venta=' || :OLD.descripcion_Venta || ', CantidadProducto=' || :OLD.cantidadProducto || ', ID_Empleado=' || :OLD.id_Empleado || ', ID_auto=' || :OLD.ID_auto || ', Precio_Producto=' || :OLD.precio_Producto || ', Fecha_venta=' || :OLD.fecha_venta));
+        INSERT INTO Auditoria_General (Nombre_Tabla, Operacion, ID_Registro, Usuario, Detalles)
+        VALUES (
+            'detalle_factura',
+            v_operacion,
+            :OLD.id_detalle_factura,
+            USER,
+            'Factura_ID=' || :OLD.factura_id ||
+            ', Vehiculo_ID=' || :OLD.vehiculo_id ||
+            ', Cantidad=' || :OLD.cantidad ||
+            ', Precio_Unitario=' || :OLD.precio_unitario
+        );
     END IF;
 END;
 /
 
 
+-- Trigger para la tabla stock
+CREATE OR REPLACE TRIGGER trg_audit_stock
+AFTER INSERT OR UPDATE OR DELETE ON stock
+FOR EACH ROW
+DECLARE
+    v_operacion VARCHAR2(10);
+BEGIN
+    IF INSERTING THEN
+        v_operacion := 'INSERT';
+        INSERT INTO Auditoria_General (Nombre_Tabla, Operacion, ID_Registro, Usuario, Detalles)
+        VALUES (
+            'stock',
+            v_operacion,
+            :NEW.id_stock,
+            USER,
+            'Vehiculo_ID=' || :NEW.vehiculo_id ||
+            ', Cantidad=' || :NEW.cantidad
+        );
+    ELSIF UPDATING THEN
+        v_operacion := 'UPDATE';
+        INSERT INTO Auditoria_General (Nombre_Tabla, Operacion, ID_Registro, Usuario, Detalles)
+        VALUES (
+            'stock',
+            v_operacion,
+            :OLD.id_stock,
+            USER,
+            'Vehiculo_ID=' || :OLD.vehiculo_id ||
+            ', Cantidad=' || :OLD.cantidad ||
+            ' -> ' ||
+            'Vehiculo_ID=' || :NEW.vehiculo_id ||
+            ', Cantidad=' || :NEW.cantidad
+        );
+    ELSIF DELETING THEN
+        v_operacion := 'DELETE';
+        INSERT INTO Auditoria_General (Nombre_Tabla, Operacion, ID_Registro, Usuario, Detalles)
+        VALUES (
+            'stock',
+            v_operacion,
+            :OLD.id_stock,
+            USER,
+            'Vehiculo_ID=' || :OLD.vehiculo_id ||
+            ', Cantidad=' || :OLD.cantidad
+        );
+    END IF;
+END;
+/  
 
+--INSERTS
+
+--FIN DE LOS INSERTS
