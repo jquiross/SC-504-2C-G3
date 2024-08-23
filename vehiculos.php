@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-12">
                     <nav class="navbar navbar-expand-xl navbar-light bg-light">
-                        <a class="navbar-brand" href="indexDashBoard.html">
+                        <a class="navbar-brand" href="indexDashBoard.php">
                             <i class="fas fa-3x fa-tachometer-alt tm-site-icon"></i>
                             <h1 class="tm-site-title mb-0">Dashboard</h1>
                         </a>
@@ -35,47 +35,24 @@
                             aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav mx-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="indexDashBoard.html">Dashboard
-                                        <span class="sr-only">(Actual)</span>
-                                    </a>
+                                    <a class="nav-link" href="vehiculos.php">Vehiculos</a>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        Reportes
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="#">Reporte Diario</a>
-                                        <a class="dropdown-item" href="#">Reporte Semanal</a>
-                                        <a class="dropdown-item" href="#">Reporte Anual</a>
-                                    </div>
-                                </li>
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="products.html">Productos</a>
-                                </li>
-
                                 <li class="nav-item">
-                                    <a class="nav-link" href="accounts.html">Cuentas</a>
+                                    <a class="nav-link" href="cuentas.php">Cuentas</a>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        Configuración
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="#">Perfil</a>
-                                        <a class="dropdown-item" href="#">Facturación</a>
-                                        <a class="dropdown-item" href="#">Personalizar</a>
-                                    </div>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="citas.php">Citas</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="pagos.php">Pagos</a>
                                 </li>
                             </ul>
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link d-flex" href="login.html">
+                                    <a class="nav-link d-flex" href="index.php">
                                         <i class="far fa-user mr-2 tm-logout-icon"></i>
                                         <span>Cerrar Sesión</span>
                                     </a>

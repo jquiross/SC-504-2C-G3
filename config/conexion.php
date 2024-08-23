@@ -1,21 +1,12 @@
 <?php
-
-$dsn = 'oci:dbname=//localhost:1521/orcl'; 
-$username = 'SYSTEM'; 
-$password = 'Jeremy1234'; 
+$dsn = 'oci:dbname=//localhost:1521/orcl'; // Asegúrate de que 'orcl' es el nombre correcto del servicio
+$username = 'ADMIN';
+$password = '1234';
 
 try {
-
     $conn = new PDO($dsn, $username, $password);
-    
-
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-
-    echo "Conexión exitosa a la base de datos Collection Garage.";
 } catch (PDOException $e) {
-
-    echo "Error al conectar a la base de datos: " . $e->getMessage();
-    exit;
-}
+    die("Error de conexión: " . $e->getMessage());
+}   
 ?>
