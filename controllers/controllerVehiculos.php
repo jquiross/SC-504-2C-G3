@@ -3,11 +3,9 @@
 include_once 'config/conexion.php';
 
 try {
-    // Conectar a la base de datos Oracle
     $conn = new PDO("oci:dbname=//localhost:1521/orcl", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Verificar si el formulario ha sido enviado   
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $accion = $_POST['accion'];
 
@@ -25,7 +23,8 @@ try {
     echo "Error: " . $e->getMessage();
 }
 
-function agregarVehiculo($conn, $data) {
+function agregarVehiculo($conn, $data)
+{
     try {
         $stmt = $conn->prepare("BEGIN AgregarVehiculo(:p_id_vehiculo, :p_modelo, :p_marca, :p_ano, :p_precio, :p_estado, :p_color, :p_vin, :p_categoria_id, :p_proveedor_id, :p_foto_url, :p_id_auditoria); END;");
         $stmt->bindParam(':p_id_vehiculo', $data['p_id_vehiculo']);
@@ -47,7 +46,8 @@ function agregarVehiculo($conn, $data) {
     }
 }
 
-function editarVehiculo($conn, $data) {
+function editarVehiculo($conn, $data)
+{
     try {
         $stmt = $conn->prepare("BEGIN ActualizarVehiculo(:p_id_vehiculo, :p_modelo, :p_marca, :p_ano, :p_precio, :p_estado, :p_color, :p_vin, :p_categoria_id, :p_proveedor_id, :p_foto_url, :p_id_auditoria); END;");
         $stmt->bindParam(':p_id_vehiculo', $data['p_id_vehiculo']);
@@ -69,7 +69,8 @@ function editarVehiculo($conn, $data) {
     }
 }
 
-function eliminarVehiculo($conn, $data) {
+function eliminarVehiculo($conn, $data)
+{
     try {
         $stmt = $conn->prepare("BEGIN EliminarVehiculo(:p_id_vehiculo); END;");
         $stmt->bindParam(':p_id_vehiculo', $data['p_id_vehiculo']);
@@ -80,7 +81,8 @@ function eliminarVehiculo($conn, $data) {
     }
 }
 
-function consultarVehiculos($conn) {
+function consultarVehiculos($conn)
+{
     try {
         $stmt = $conn->query("BEGIN MostrarVehiculos(); END;");
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -90,4 +92,3 @@ function consultarVehiculos($conn) {
         echo "Error al consultar vehículos: " . $e->getMessage();
     }
 }
-?>

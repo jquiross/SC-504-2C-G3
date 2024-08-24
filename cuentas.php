@@ -5,13 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!--
-
-    Template 2108 Dashboard
-
-	http://www.tooplate.com/view/2108-dashboard
-
-    -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
     <!-- https://fonts.google.com/specimen/Open+Sans -->
     <link rel="stylesheet" href="css/fontawesome.min.css">
@@ -21,8 +14,8 @@
     <link rel="stylesheet" href="css/tooplate.css">
 </head>
 
-<body id="reportsPage" class="bg02">
-    <div class="" id="home">
+<body id="reportsPage" class="container-fluid">
+    <div class="container-fluid" id="home">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -63,102 +56,137 @@
                 </div>
             </div>
             <!-- row -->
-            <div class="row tm-content-row tm-mt-big">
-                <div class="tm-col tm-col-big">
+            <div class="row tm-content-row tm-mt-big justify-content-center">
+                <div class="col-xl-8 col-lg-12 tm-md-12 tm-sm-12">
                     <div class="bg-white tm-block">
                         <div class="row">
                             <div class="col-12">
                                 <h2 class="tm-block-title d-inline-block">Cuentas</h2>
+                                <a href="añadircuenta.php" class="btn btn-primary float-right">Añadir Cuentas</a>
                             </div>
                         </div>
-                        <ol class="tm-list-group tm-list-group-alternate-color tm-list-group-pad-big">
-                            <li class="tm-list-group-item">
-                                Donec eget libero
-                            </li>
-                            <li class="tm-list-group-item">
-                                Nunc luctus suscipit elementum
-                            </li>
-                            <li class="tm-list-group-item">
-                                Maecenas eu justo maximus
-                            </li>
-                            <li class="tm-list-group-item">
-                                Pellentesque auctor urna nunc
-                            </li>
-                            <li class="tm-list-group-item">
-                                Sit amet aliquam lorem efficitur
-                            </li>
-                            <li class="tm-list-group-item">
-                                Pellentesque auctor urna nunc
-                            </li>
-                            <li class="tm-list-group-item">
-                                Sit amet aliquam lorem efficitur
-                            </li>
-                        </ol>
-                    </div>
-                </div>
-                <div class="tm-col tm-col-big">
-                    <div class="bg-white tm-block">
-                        <div class="row">
-                            <div class="col-12">
-                                <h2 class="tm-block-title">Editar Cuenta</h2>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <form action="" class="tm-signup-form">
-                                    <div class="form-group">
-                                        <label for="name">Nombre de la Cuenta</label>
-                                        <input placeholder="Vulputate Eleifend Nulla" id="name" name="name" type="text" class="form-control validate">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email">Email de la Cuenta</label>
-                                        <input placeholder="vulputate@eleifend.co" id="email" name="email" type="email" class="form-control validate">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password">Contraseña</label>
-                                        <input placeholder="******" id="password" name="password" type="password" class="form-control validate">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password2">Ingrese Nuevamente la Contraseña</label>
-                                        <input placeholder="******" id="password2" name="password2" type="password" class="form-control validate">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="phone">Teléfono</label>
-                                        <input placeholder="010-030-0440" id="phone" name="phone" type="tel" class="form-control validate">
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 col-sm-4">
-                                            <button type="submit" class="btn btn-primary">Actualizar
-                                            </button>
-                                        </div>
-                                        <div class="col-12 col-sm-8 tm-btn-right">
-                                            <button type="submit" class="btn btn-danger">Eliminar Cuenta
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tm-col tm-col-small">
-                    <div class="bg-white tm-block">
-                        <h2 class="tm-block-title">Foto de Perfil</h2>
-                        <img src="img/profile-image.png" alt="Profile Image" class="img-fluid">
-                        <div class="custom-file mt-3 mb-3">
-                            <input id="fileInput" type="file" style="display:none;" />
-                            <input type="button" class="btn btn-primary d-block mx-xl-auto" value="Subir..." onclick="document.getElementById('fileInput').click();" />
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped tm-table-striped-even mt-3">
+                                <thead>
+                                    <tr class="tm-bg-gray">
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Rol ID</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Laura Morales</td>
+                                        <td>laura.morales@example.com</td>
+                                        <td>1</td>
+                                        <td>
+                                            <a href="editarUsuario.php?id=1" class="btn btn-warning btn-sm">Editar</a>
+                                            <a href="eliminarUsuario.php?id=1" class="btn btn-danger btn-sm">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Andrés Fernández</td>
+                                        <td>andres.fernandez@example.com</td>
+                                        <td>2</td>
+                                        <td>
+                                            <a href="editarUsuario.php?id=2" class="btn btn-warning btn-sm">Editar</a>
+                                            <a href="eliminarUsuario.php?id=2" class="btn btn-danger btn-sm">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Isabella Ruiz</td>
+                                        <td>isabella.ruiz@example.com</td>
+                                        <td>1</td>
+                                        <td>
+                                            <a href="editarUsuario.php?id=3" class="btn btn-warning btn-sm">Editar</a>
+                                            <a href="eliminarUsuario.php?id=3" class="btn btn-danger btn-sm">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Daniel Martínez</td>
+                                        <td>daniel.martinez@example.com</td>
+                                        <td>3</td>
+                                        <td>
+                                            <a href="editarUsuario.php?id=4" class="btn btn-warning btn-sm">Editar</a>
+                                            <a href="eliminarUsuario.php?id=4" class="btn btn-danger btn-sm">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>Camila Castro</td>
+                                        <td>camila.castro@example.com</td>
+                                        <td>2</td>
+                                        <td>
+                                            <a href="editarUsuario.php?id=5" class="btn btn-warning btn-sm">Editar</a>
+                                            <a href="eliminarUsuario.php?id=5" class="btn btn-danger btn-sm">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>Felipe Gómez</td>
+                                        <td>felipe.gomez@example.com</td>
+                                        <td>1</td>
+                                        <td>
+                                            <a href="editarUsuario.php?id=6" class="btn btn-warning btn-sm">Editar</a>
+                                            <a href="eliminarUsuario.php?id=6" class="btn btn-danger btn-sm">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td>Valentina Ortega</td>
+                                        <td>valentina.ortega@example.com</td>
+                                        <td>3</td>
+                                        <td>
+                                            <a href="editarUsuario.php?id=7" class="btn btn-warning btn-sm">Editar</a>
+                                            <a href="eliminarUsuario.php?id=7" class="btn btn-danger btn-sm">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td>Santiago López</td>
+                                        <td>santiago.lopez@example.com</td>
+                                        <td>2</td>
+                                        <td>
+                                            <a href="editarUsuario.php?id=8" class="btn btn-warning btn-sm">Editar</a>
+                                            <a href="eliminarUsuario.php?id=8" class="btn btn-danger btn-sm">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td>Mariana Silva</td>
+                                        <td>mariana.silva@example.com</td>
+                                        <td>1</td>
+                                        <td>
+                                            <a href="editarUsuario.php?id=9" class="btn btn-warning btn-sm">Editar</a>
+                                            <a href="eliminarUsuario.php?id=9" class="btn btn-danger btn-sm">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>10</td>
+                                        <td>Tomás Herrera</td>
+                                        <td>tomas.herrera@example.com</td>
+                                        <td>3</td>
+                                        <td>
+                                            <a href="editarUsuario.php?id=10" class="btn btn-warning btn-sm">Editar</a>
+                                            <a href="eliminarUsuario.php?id=10" class="btn btn-danger btn-sm">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <script src="js/jquery-3.3.1.min.js"></script>
-        <!-- https://jquery.com/download/ -->
-        <script src="js/bootstrap.min.js"></script>
-        <!-- https://getbootstrap.com/ -->
+            <script src="js/jquery-3.3.1.min.js"></script>
+            <!-- https://jquery.com/download/ -->
+            <script src="js/bootstrap.min.js"></script>
+            <!-- https://getbootstrap.com/ -->
 </body>
 
 </html>

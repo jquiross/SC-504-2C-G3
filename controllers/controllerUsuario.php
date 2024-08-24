@@ -1,6 +1,6 @@
 <?php
 
-include_once './config/conexion.php'; // Asegúrate de que la ruta sea correcta
+include_once './config/conexion.php'; 
 
 function conexion() {
     try {
@@ -12,7 +12,7 @@ function conexion() {
     }
 }
 
-// Agregar usuario
+
 function agregar_usuario($email, $password, $nombre, $apellido, $telefono, $direccion, $rol_id) {
     $conn = conexion();
     $sql = 'BEGIN AgregarUsuario(:email, :password, :nombre, :apellido, :telefono, :direccion, :rol_id); END;';
@@ -32,7 +32,6 @@ function agregar_usuario($email, $password, $nombre, $apellido, $telefono, $dire
     }
 }
 
-// Editar usuario
 function editar_usuario($id_usuario, $email, $password, $nombre, $apellido, $telefono, $direccion, $rol_id) {
     $conn = conexion();
     $sql = 'BEGIN EditarUsuario(:id_usuario, :email, :password, :nombre, :apellido, :telefono, :direccion, :rol_id); END;';
@@ -53,7 +52,6 @@ function editar_usuario($id_usuario, $email, $password, $nombre, $apellido, $tel
     }
 }
 
-// Eliminar usuario
 function eliminar_usuario($id_usuario) {
     $conn = conexion();
     $sql = 'BEGIN EliminarUsuario(:id_usuario); END;';
@@ -67,7 +65,6 @@ function eliminar_usuario($id_usuario) {
     }
 }
 
-// Mostrar todos los usuarios
 function mostrar_usuarios() {
     $conn = conexion();
     $sql = 'BEGIN MostrarUsuarios(); END;';

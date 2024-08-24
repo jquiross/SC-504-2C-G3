@@ -134,7 +134,7 @@ if (isset($_POST["paytpvToken"])) {
 	<div class="container">
 			<div class="row">
 				<aside class="col-sm-6">
-					<p><h1>JET-IFRAME </h1> </p>
+					<p><h1>Envio de datos hacia PayPal</h1> </p>
 
 					<article class="card">
 						<div class="card-body p-5">

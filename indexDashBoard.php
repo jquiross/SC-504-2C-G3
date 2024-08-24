@@ -59,62 +59,46 @@
                 </div>
             </div>
             <!-- row -->
-            <div class="row tm-content-row tm-mt-big">
-                <div class="tm-col tm-col-big">
+            <div class="row tm-content-row tm-mt-big justify-content-between">
+                <div class="col-xl-4 col-lg-6 col-md-12">
                     <div class="bg-white tm-block h-100">
-                        <h2 class="tm-block-title">Más Vendido</h2>
-                        <canvas id="lineChart"></canvas>
-                    </div>
-                </div>
-                <div class="tm-col tm-col-big">
-                    <div class="bg-white tm-block h-100">
-                        <h2 class="tm-block-title">Desempeño</h2>
+                        <h2 class="tm-block-title">Vehiculos mas vendidos</h2>
                         <canvas id="barChart"></canvas>
                     </div>
                 </div>
-                <div class="tm-col tm-col-small">
-                    <div class="bg-white tm-block h-100">
-                        <canvas id="pieChart" class="chartjs-render-monitor"></canvas>
-                    </div>
-                </div>
-
-                <div class="tm-col tm-col-big">
+                <div class="col-xl-4 col-lg-6 col-md-12">
                     <div class="bg-white tm-block h-100">
                         <div class="row">
                             <div class="col-8">
-                                <h2 class="tm-block-title d-inline-block">Lista de Productos Populares</h2>
-
+                                <h2 class="tm-block-title d-inline-block">Lista de Vehiculos Populares</h2>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="products.html" class="tm-link-black">Ver Todo</a>
+                                <a href="vehiculos.php" class="tm-link-black">Ver Todo</a>
                             </div>
                         </div>
                         <ol class="tm-list-group tm-list-group-alternate-color tm-list-group-pad-big">
                             <li class="tm-list-group-item">
-                                Por Definir
+                                Chevrolet Camaro 1969 - 15 unidades vendidas (azul)
                             </li>
                             <li class="tm-list-group-item">
-                                Por Definir
+                                Ford Mustang 1965 - 13 unidades vendidas (rojo)
                             </li>
                             <li class="tm-list-group-item">
-                                Por Definir
+                                Porsche 911 Classic - 10 unidades vendidas (verde)
                             </li>
                             <li class="tm-list-group-item">
-                                Por Definir
+                                Jaguar E-Type 1961 - 6 unidades vendidas (amrillo)
                             </li>
                             <li class="tm-list-group-item">
-                                Por Definir
+                                Dodge Charger 1970 - 4 unidades vendidas (naranja)
                             </li>
                             <li class="tm-list-group-item">
-                                Por Definir
-                            </li>
-                            <li class="tm-list-group-item">
-                                Por Definir
+                                BMW 2002 Turbo - 2 unidades vendidas (morado)
                             </li>
                         </ol>
                     </div>
                 </div>
-                <div class="tm-col tm-col-big">
+                <div class="col-xl-4 col-lg-6 col-md-12">
                     <div class="bg-white tm-block h-100">
                         <h2 class="tm-block-title">Calendario</h2>
                         <div id="calendar"></div>
@@ -125,26 +109,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="tm-col tm-col-small">
-                    <div class="bg-white tm-block h-100">
-                        <h2 class="tm-block-title">Próximas Tareas</h2>
-                        <ol class="tm-list-group">
-                            <li class="tm-list-group-item">Lista de Tareas</li>
-                            <li class="tm-list-group-item">Lorem ipsum doloe</li>
-                            <li class="tm-list-group-item">Leer Reportes</li>
-                            <li class="tm-list-group-item">Redactar Email</li>
-
-                            <li class="tm-list-group-item">LLamar a Clientes</li>
-                            <li class="tm-list-group-item">Ir a Reunión</li>
-                            <li class="tm-list-group-item">Plan Semanal</li>
-                            <li class="tm-list-group-item">Solicitar feedback</li>
-
-                            <li class="tm-list-group-item">Reunirse con un supervisor</li>
-                            <li class="tm-list-group-item">Viaje de companía</li>
-                        </ol>
-                    </div>
-                </div>
             </div>
+
         </div>
     </div>
     <script src="./js/jquery-3.3.1.min.js"></script>
@@ -170,13 +136,12 @@
             configBar,
             configPie,
             lineChart;
-        barChart, pieChart;
+        barChart;
         // DOM is ready
         $(function() {
             updateChartOptions();
             drawLineChart(); // Line Chart
             drawBarChart(); // Bar Chart
-            drawPieChart(); // Pie Chart
             drawCalendar(); // Calendar
 
             $(window).resize(function() {

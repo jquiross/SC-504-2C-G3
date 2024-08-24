@@ -9,12 +9,11 @@
 	<meta name="author" content="Web Domus Italia">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="./source/bootstrap-3.3.6-dist/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="./source/font-awesome-4.5.0/css/font-awesome.css">
-	<link rel="stylesheet" type="text/css" href="./style/slider.css">
-	<link rel="stylesheet" type="text/css" href="./style/mystyle.css">
-	<link rel="stylesheet" type="text/css" href="./style/contactstyle.css">
-	<link rel="stylesheet" type="text/css" href="./css/styles.css">
+	<link rel="stylesheet" type="text/css" href="source/bootstrap-3.3.6-dist/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="source/font-awesome-4.5.0/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="style/slider.css">
+	<link rel="stylesheet" type="text/css" href="style/mystyle.css">
+
 	<style>
 		.whatsapp-button,
 		.other-button {
@@ -54,6 +53,7 @@
 			height: 30px;
 		}
 	</style>
+
 </head>
 
 <body>
@@ -82,12 +82,12 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand logo" href="#"><img src="./image/logo1.png" alt="logo"></a>
+					<a class="navbar-brand logo" href="index.php"><img src="image/logo1.png" alt="logo"></a>
 				</div>
 			</div>
 			<div class="collapse navbar-collapse" id="upmenu">
 				<ul class="nav navbar-nav" id="navbarontop">
-					<li class="active"><a href="index.html">HOME</a> </li>
+					<li class="active"><a href="index.php">HOME</a> </li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CATEGORIAS<span class="caret"></span></a>
 						<ul class="dropdown-menu dropdowncostume">
@@ -97,9 +97,8 @@
 						</ul>
 					</li>
 					<li>
-						<a href="contact.html">CONTACTENOS</a>
+						<a href="aboutUs.html">CONTACTENOS</a>
 					</li>
-					<button><span class="postnewcar">AÑADE UN VEHICULO</span></button>
 				</ul>
 			</div>
 		</nav>
@@ -109,27 +108,27 @@
 		<div id="carousel-up" class="carousel slide" data-ride="carousel">
 			<div class="carousel-inner " role="listbox">
 				<div class="item active">
-					<img src="./image/oldcar.jpg" alt="oldcar">
+					<img src="image/oldcar.jpg" alt="oldcar">
 					<div class="carousel-caption">
 						<h2>Porsche 356</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur ,<br>
-							sed do eiusmod tempor incididunt ut labore </p>
+						<p>El Porsche 356, fabricado entre 1948 y 1965, es el primer modelo de producción en serie de la marca.<br>
+							Con su diseño aerodinámico y elegante, este auto compacto y ligero es conocido por su excelente manejo y rendimiento. Equipado con un motor trasero de cuatro cilindros, el 356 se convirtió en un ícono de los deportivos clásicos, apreciado por su combinación de estilo y agilidad en la carretera.</p>
 					</div>
 				</div>
 				<div class="item">
 					<img src="image/porche.jpg" alt="porche">
 					<div class="carousel-caption">
 						<h2>Porche</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur ,<br>
-							sed do eiusmod tempor incididunt ut labore </p>
+						<p>Vehiculo automovil de la marca Porsche<br>
+							alta gama $20 000</p>
 					</div>
 				</div>
 				<div class="item">
-					<img src="./image/benz.jpg" alt="benz">
+					<img src="image/benz.jpg" alt="benz">
 					<div class="carousel-caption">
-						<h2>Car</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur ,<br>
-							sed do eiusmod tempor incididunt ut labore </p>
+						<h2>Porche</h2>
+						<p>Vehiculo automovil de la marca Porsche<br>
+							alta gama $20 000</p>
 					</div>
 				</div>
 			</div>
@@ -137,7 +136,6 @@
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed textcostume" data-toggle="collapse" data-target="#navbarmidle" aria-expanded="false">
 						<h1>BUSQUEDA</h1>
-						<span class="sr-only">Toggle navigation</span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
@@ -163,16 +161,14 @@
 						</li>
 						<li class="li-minyear"><a class="btn  dropdown-toggle btn-costume" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Año Minimo<span class="glyphicon glyphicon-chevron-down downicon"></span></a>
 							<ul class="dropdown-menu" id="mydd2">
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
+								<li><a href="#">1950</a></li>
 							</ul>
 						</li>
 						<li class="li-maxyear"><a class="btn dropdown-toggle btn-costume" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Año máximo<span class="glyphicon glyphicon-chevron-down downicon"></span></a>
 							<ul class="dropdown-menu" id="mydd3">
-								<li><a href="#">1900</a></li>
-								<li><a href="#">2000</a></li>
-								<li><a href="#">2016</a></li>
+								<li><a href="#">1970</a></li>
+								<li><a href="#">1980</a></li>
+								<li><a href="#">1990</a></li>
 							</ul>
 						</li>
 						<li class="li-slideprice">
@@ -184,6 +180,7 @@
 						</li>
 						<li class="li-search"> <button class="searchbutton"><span class="glyphicon glyphicon-search "></span></button></li>
 					</ul>
+
 				</div>
 			</nav>
 		</div>
@@ -202,18 +199,18 @@
 						</div>
 						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 txt1colon ">
 							<div class="featurecontant">
-								<h1>LOREM IPSUM</h1>
-								<p>"Lorem ipsum dolor sit amet, consectetur ,<br>
-									sed do eiusmod tempor incididunt </p>
+								<h1>Porshe 911</h1>
+								<p>"Luno de los modelos mas iconicos de la marca alemana Porsche. ,<br>
+									Motor trasero de 6 cilindros boxer (configuracion clasica del 911). </p>
 								<h2>Price &euro;</h2>
 								<button id="btnRM" onClick="rmtxt()">Leer más</button>
 								<div id="readmore">
-									<h1>Car Name</h1>
-									<p>"Lorem ipsum dolor sit amet, consectetur ,<br>
-										sed do eiusmod tempor incididunt <br>"Lorem ipsum dolor sit amet, consectetur ,<br>
-										sed do eiusmod tempor incididunt"Lorem ipsum dolor sit amet, consectetur1 ,
-										sed do eiusmod tempor incididunt"Lorem ipsum dolor sit amet, consectetur1
-										sed do eiusmod tempor incididunt"Lorem ipsum dolor sit amet, consectetur1<br>
+									<h1>Porshe Cayenne</h1>
+									<p>"Motor trasero de 6 cilindros ,<br>
+										Motor turbo alimentado de 3 a 3.8 litros <br>"La potencia varia dependiendo del modelo, ,<br>
+										Disponible con traccion trasera "o traccion total un chuzo de auto,,
+										Automatica de doble embrague "transmision manual de 7 velocidades
+										Aceleracion de 0 a 100 en 3.5s "Carroceria aerodinamica,<br>
 									</p>
 									<button id="btnRL">Leer menos</button>
 								</div>
@@ -228,18 +225,18 @@
 						</div>
 						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 txt1colon ">
 							<div class="featurecontant">
-								<h1>LOREM IPSUM</h1>
-								<p>"Lorem ipsum dolor sit amet, consectetur ,<br>
-									sed do eiusmod tempor incididunt </p>
+								<h1>Porshe Cayenne</h1>
+								<p>"Opciones de doble traccion y mas de 6 marchas ,<br>
+									El auto ideal para los solteros </p>
 								<h2>Price &euro;</h2>
 								<button id="btnRM2">Leer mas</button>
 								<div id="readmore2">
 									<h1>Car Name</h1>
-									<p>"Lorem ipsum dolor sit amet, consectetur ,<br>
-										sed do eiusmod tempor incididunt <br>"Lorem ipsum dolor sit amet, consectetur ,<br>
-										sed do eiusmod tempor incididunt"Lorem ipsum dolor sit amet, consectetur1 ,
-										sed do eiusmod tempor incididunt"Lorem ipsum dolor sit amet, consectetur1
-										sed do eiusmod tempor incididunt"Lorem ipsum dolor sit amet, consectetur1<br></p>
+									<p>"El porshe Cayenne auto clasico muy famoso, ,<br>
+										Sale en grandes peliculas <br>"Resistencia aerodinamica unica ,<br>
+										Llantas de fabrica profesionales"Con una aerodinamica envidiable ,
+										El interior es comodo y acogedor"Full extras automatico o manual
+										Parlantes unicos de fabrica, De los porshe el mas economico y unico<br></p>
 									<button id="btnRL2">Leer menos</button>
 								</div>
 							</div>
@@ -276,7 +273,18 @@
 								<div class="glyphicon glyphicon-star"></div>
 							</div>
 							<div class="simpletxt">
-								<h3 class="name">Rolls Royce</h3>
+								<h3 class="name">
+									<div class="simpletxt">
+										<h3 class="name">Rolls-Royce Phantom</h3>
+										<p>El Rolls-Royce Phantom es el pináculo del lujo automotriz, combinando una ingeniería excepcional con un diseño opulento. Este sedán de ultra-lujo cuenta con un motor V12 y un interior hecho a mano, ofreciendo una experiencia de conducción incomparable y un confort inigualable.</p>
+										<h4 class="price"> $10 000</h4>
+										<button>Leer más</button><br>
+										<div class="wishtxt">
+											<p class="paragraph1"> Añadir a la lista de deseos <span class="glyphicon glyphicon-heart"></span> </p>
+											<p class="paragraph2">Compare <span class="icon"><img src="image/compicon.png" alt="compicon"></span></p>
+										</div>
+									</div>
+								</h3>
 								<p>"Lorem ipsum dolor sit amet, consectetur,<br>
 									sed do eiusmod tempor incididunt" </p>
 								<h4 class="price"> 1000&euro;</h4>
@@ -305,13 +313,13 @@
 							</div>
 							<div class="simpletxt">
 								<h3 class="name">Renault</h3>
-								<p>"Lorem ipsum dolor sit amet, consectetur,<br>
-									sed do eiusmod tempor incididunt" </p>
-								<h4 class="price">900 &euro;</h4>
+								<p>"Vehiculo automotriz,<br>
+									de gama Alta." </p>
+								<h4 class="price">$9000</h4>
 								<button>Leer más</button><br>
 								<div class="wishtxt">
 									<p class="paragraph1"> Añadir a la lista de deseos <span class="glyphicon glyphicon-heart"></span> </p>
-									<p class="paragraph2">Compare <span class="icon"><img src="./image/compicon.png" alt="compicon"></span></p>
+									<p class="paragraph2">Compare <span class="icon"><img src="image/compicon.png" alt="compicon"></span></p>
 								</div>
 							</div>
 							<div class="stars2">
@@ -333,13 +341,13 @@
 							</div>
 							<div class="simpletxt">
 								<h3 class="name">Ford Mustang</h3>
-								<p>"Lorem ipsum dolor sit amet, consectetur,<br>
-									sed do eiusmod tempor incididunt" </p>
-								<h4 class="price">3000 &euro;</h4>
+								<p>El Ford Mustang es un ícono del automovilismo estadounidense, conocido por su poderoso motor y su diseño musculoso.<br>
+									Este clásico deportivo ofrece una mezcla única de rendimiento y estilo, siendo una elección popular entre los amantes de los autos de alto rendimiento.</p>
+								<h4 class="price">$30 000 </h4>
 								<button>Leer más</button><br>
 								<div class="wishtxt">
 									<p class="paragraph1"> Añadir a la lista de deseos <span class="glyphicon glyphicon-heart"></span> </p>
-									<p class="paragraph2">Compare <span class="icon"><img src="./image/compicon.png" alt="compicon"></span></p>
+									<p class="paragraph2">Compare <span class="icon"><img src="image/compicon.png" alt="compicon"></span></p>
 								</div>
 							</div>
 							<div class="stars2">
@@ -352,7 +360,7 @@
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
 					<div class="txthover">
-						<img src="./image/car4.jpg" alt="car4">
+						<img src="image/car4.jpg" alt="car4">
 						<div class="txtcontent">
 							<div class="stars">
 								<div class="glyphicon glyphicon-star"></div>
@@ -360,14 +368,14 @@
 								<div class="glyphicon glyphicon-star"></div>
 							</div>
 							<div class="simpletxt">
-								<h3 class="name">Rover</h3>
-								<p>"Lorem ipsum dolor sit amet, consectetur,<br>
-									sed do eiusmod tempor incididunt" </p>
-								<h4 class="price">1000 &euro;</h4>
+								<h3 class="name">Rover 75</h3>
+								<p>sedán británico conocido por su elegancia clásica y su comodidad de conducción.<br>
+									Con un interior lujoso y acabados de alta calidad, el Rover 75 combina un diseño tradicional con tecnología moderna, ofreciendo una experiencia de conducción refinada y sofisticada.</p>
+								<h4 class="price">$10 000 </h4>
 								<button>Leer más</button><br>
 								<div class="wishtxt">
 									<p class="paragraph1"> Añadir a la lista de deseos <span class="glyphicon glyphicon-heart"></span> </p>
-									<p class="paragraph2">Compare <span class="icon"><img src="./image/compicon.png" alt="compicon"></span></p>
+									<p class="paragraph2">Compare <span class="icon"><img src="image/compicon.png" alt="compicon"></span></p>
 								</div>
 							</div>
 							<div class="stars2">
@@ -380,7 +388,7 @@
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
 					<div class="txthover">
-						<img src="./image/car5.jpg" alt="car5">
+						<img src="image/car5.jpg" alt="car5">
 						<div class="txtcontent">
 							<div class="stars">
 								<div class="glyphicon glyphicon-star"></div>
@@ -389,13 +397,13 @@
 							</div>
 							<div class="simpletxt">
 								<h3 class="name">Porche</h3>
-								<p>"Lorem ipsum dolor sit amet, consectetur,<br>
-									sed do eiusmod tempor incididunt" </p>
-								<h4 class="price">1200 &euro;</h4>
+								<p>Vehiculo automotriz<br>
+									de alta gama.</p>
+								<h4 class="price">$12 000</h4>
 								<button>Leer más</button><br>
 								<div class="wishtxt">
 									<p class="paragraph1"> Añadir a la lista de deseos <span class="glyphicon glyphicon-heart"></span> </p>
-									<p class="paragraph2">Compare <span class="icon"><img src="./image/compicon.png" alt="compicon"></span></p>
+									<p class="paragraph2">Compare <span class="icon"><img src="image/compicon.png" alt="compicon"></span></p>
 								</div>
 							</div>
 							<div class="stars2">
@@ -408,7 +416,7 @@
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
 					<div class="txthover">
-						<img src="./image/car6.jpg" alt="car6">
+						<img src="image/car6.jpg" alt="car6">
 						<div class="txtcontent">
 							<div class="stars">
 								<div class="glyphicon glyphicon-star"></div>
@@ -417,13 +425,13 @@
 							</div>
 							<div class="simpletxt">
 								<h3 class="name">Porche 911</h3>
-								<p>"Lorem ipsum dolor sit amet, consectetur,<br>
-									sed do eiusmod tempor incididunt" </p>
-								<h4 class="price">4000 &euro;</h4>
+								<p>El Porsche 911 es un deportivo legendario que combina un rendimiento excepcional con un diseño icónico.<br>
+									Desde su lanzamiento en 1964, el 911 ha sido un símbolo de innovación y excelencia en la ingeniería automotriz, ofreciendo una experiencia de conducción inigualable.</p>
+								<h4 class="price">$40 000</h4>
 								<button>Leer más</button><br>
 								<div class="wishtxt">
 									<p class="paragraph1"> Añadir a la lista de deseos <span class="glyphicon glyphicon-heart"></span> </p>
-									<p class="paragraph2">Compare <span class="icon"><img src="./image/compicon.png" alt="compicon"></span></p>
+									<p class="paragraph2">Compare <span class="icon"><img src="image/compicon.png" alt="compicon"></span></p>
 								</div>
 							</div>
 							<div class="stars2">
@@ -436,7 +444,7 @@
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
 					<div class="txthover">
-						<img src="./image/car7.jpg" alt="car7">
+						<img src="image/car7.jpg" alt="car7">
 						<div class="txtcontent">
 							<div class="stars">
 								<div class="glyphicon glyphicon-star"></div>
@@ -445,13 +453,13 @@
 							</div>
 							<div class="simpletxt">
 								<h3 class="name">Chevrolet SS</h3>
-								<p>"Lorem ipsum dolor sit amet, consectetur,<br>
-									sed do eiusmod tempor incididunt" </p>
-								<h4 class="price">3000 &euro;</h4>
+								<p>El Chevrolet SS es un sedán deportivo que combina un diseño elegante con un potente motor V8.<br>
+									Este vehículo es conocido por su rendimiento robusto, manejo preciso, y una experiencia de conducción emocionante, lo que lo convierte en una joya para los amantes de los autos de alto rendimiento. </p>
+								<h4 class="price">$30 000</h4>
 								<button>Leer más</button><br>
 								<div class="wishtxt">
 									<p class="paragraph1"> Añadir a la lista de deseos <span class="glyphicon glyphicon-heart"></span> </p>
-									<p class="paragraph2">Compare <span class="icon"><img src="./image/compicon.png" alt="compicon"></span></p>
+									<p class="paragraph2">Compare <span class="icon"><img src="image/compicon.png" alt="compicon"></span></p>
 								</div>
 							</div>
 							<div class="stars2">
@@ -473,13 +481,13 @@
 							</div>
 							<div class="simpletxt">
 								<h3 class="name">Meclaren</h3>
-								<p>"Lorem ipsum dolor sit amet, consectetur,<br>
-									sed do eiusmod tempor incididunt" </p>
-								<h4 class="price">2500 &euro;</h4>
+								<p>superdeportivo de vanguardia que combina un diseño aerodinámico con un rendimiento impresionante.<br>
+									Equipado con un motor V8 biturbo, el 720S es capaz de alcanzar velocidades asombrosas, ofreciendo una experiencia de conducción que desafía los límites de lo posible.</p>
+								<h4 class="price">$25 000</h4>
 								<button>Leer más</button><br>
 								<div class="wishtxt">
 									<p class="paragraph1"> Añadir a la lista de deseos <span class="glyphicon glyphicon-heart"></span> </p>
-									<p class="paragraph2">Compare <span class="icon"><img src="./image/compicon.png" alt="compicon"></span></p>
+									<p class="paragraph2">Compare <span class="icon"><img src="image/compicon.png" alt="compicon"></span></p>
 								</div>
 							</div>
 							<div class="stars2">
@@ -526,16 +534,18 @@
 				<a href="#"><i class="fa fa-google-plus"></i></a>
 				<a href="#"><i class="fa fa-pinterest"></i></a>
 			</div>
-			<div class="footer">
-				<div class="copyright">
-					&copy; Copy right | <a href="#">Privacy </a>| <a href="#">Policy</a>
-				</div>
-			</div>
 		</div>
 	</div>
+
+	<script type="text/javascript" src="source/bootstrap-3.3.6-dist/js/jquery.js"></script>
+	<script type="text/javascript" src="./js/isotope.js"></script>
+	<script type="text/javascript" src="./js/myscript.js"></script>
+	<script type="text/javascript" src="./source/bootstrap-3.3.6-dist/js/jquery.1.11.js"></script>
+	<script type="text/javascript" src="./source/bootstrap-3.3.6-dist/js/bootstrap.js"></script>
 	<a href="http://wa.link/at86om" class="whatsapp-button" target="_blank">
 		<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
 	</a>
+
 	<script>
 		window.addEventListener('mouseover', initLandbot, {
 			once: true
@@ -561,12 +571,6 @@
 			}
 		}
 	</script>
-
-	<script type="text/javascript" src="./source/bootstrap-3.3.6-dist/js/jquery.js"></script>
-	<script type="text/javascript" src="./js/isotope.js"></script>
-	<script type="text/javascript" src="./js/myscript.js"></script>
-	<script type="text/javascript" src="source/bootstrap-3.3.6-dist/js/jquery.1.11.js"></script>
-	<script type="text/javascript" src="./source/bootstrap-3.3.6-dist/js/bootstrap.js"></script>
 </body>
 
 </html>

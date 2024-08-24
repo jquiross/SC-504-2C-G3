@@ -5,13 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!--
-
-    Template 2108 Dashboard
-
-	http://www.tooplate.com/view/2108-dashboard
-
-    -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
     <!-- https://fonts.google.com/specimen/Open+Sans -->
     <link rel="stylesheet" href="css/fontawesome.min.css">
@@ -19,6 +12,63 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href="css/tooplate.css">
+
+    <style>
+        /* Estilos para el switch */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 34px;
+            height: 20px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 20px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+        }
+
+        input:checked+.slider {
+            background-color: #2196F3;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(14px);
+        }
+
+        .slider.round {
+            border-radius: 20px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+    </style>
+
 </head>
 
 <body id="reportsPage" class="bg02">
@@ -63,98 +113,245 @@
                 </div>
             </div>
             <!-- row -->
-            <div class="row tm-content-row tm-mt-big">
-                <div class="tm-col tm-col-big">
+            <div class="row tm-content-row tm-mt-big justify-content-center">
+                <div class="col-xl-8 col-lg-12 tm-md-12 tm-sm-12">
                     <div class="bg-white tm-block">
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="tm-block-title d-inline-block">Cuentas</h2>
+                                <h2 class="tm-block-title d-inline-block">Pagos</h2>
                             </div>
                         </div>
-                        <ol class="tm-list-group tm-list-group-alternate-color tm-list-group-pad-big">
-                            <li class="tm-list-group-item">
-                                Donec eget libero
-                            </li>
-                            <li class="tm-list-group-item">
-                                Nunc luctus suscipit elementum
-                            </li>
-                            <li class="tm-list-group-item">
-                                Maecenas eu justo maximus
-                            </li>
-                            <li class="tm-list-group-item">
-                                Pellentesque auctor urna nunc
-                            </li>
-                            <li class="tm-list-group-item">
-                                Sit amet aliquam lorem efficitur
-                            </li>
-                            <li class="tm-list-group-item">
-                                Pellentesque auctor urna nunc
-                            </li>
-                            <li class="tm-list-group-item">
-                                Sit amet aliquam lorem efficitur
-                            </li>
-                        </ol>
-                    </div>
-                </div>
-                <div class="tm-col tm-col-big">
-                    <div class="bg-white tm-block">
-                        <div class="row">
-                            <div class="col-12">
-                                <h2 class="tm-block-title">Editar Cuenta</h2>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <form action="" class="tm-signup-form">
-                                    <div class="form-group">
-                                        <label for="name">Nombre de la Cuenta</label>
-                                        <input placeholder="Vulputate Eleifend Nulla" id="name" name="name" type="text" class="form-control validate">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email">Email de la Cuenta</label>
-                                        <input placeholder="vulputate@eleifend.co" id="email" name="email" type="email" class="form-control validate">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password">Contraseña</label>
-                                        <input placeholder="******" id="password" name="password" type="password" class="form-control validate">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password2">Ingrese Nuevamente la Contraseña</label>
-                                        <input placeholder="******" id="password2" name="password2" type="password" class="form-control validate">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="phone">Teléfono</label>
-                                        <input placeholder="010-030-0440" id="phone" name="phone" type="tel" class="form-control validate">
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 col-sm-4">
-                                            <button type="submit" class="btn btn-primary">Actualizar
-                                            </button>
-                                        </div>
-                                        <div class="col-12 col-sm-8 tm-btn-right">
-                                            <button type="submit" class="btn btn-danger">Eliminar Cuenta
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tm-col tm-col-small">
-                    <div class="bg-white tm-block">
-                        <h2 class="tm-block-title">Foto de Perfil</h2>
-                        <img src="img/profile-image.png" alt="Profile Image" class="img-fluid">
-                        <div class="custom-file mt-3 mb-3">
-                            <input id="fileInput" type="file" style="display:none;" />
-                            <input type="button" class="btn btn-primary d-block mx-xl-auto" value="Subir..." onclick="document.getElementById('fileInput').click();" />
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped tm-table-striped-even mt-3">
+                                <thead>
+                                    <tr class="tm-bg-gray">
+                                        <th scope="col">ID Pago</th>
+                                        <th scope="col">Cliente ID</th>
+                                        <th scope="col">Factura ID</th>
+                                        <th scope="col">Monto</th>
+                                        <th scope="col">Fecha</th>
+                                        <th scope="col">Método de Pago</th>
+                                        <th scope="col">Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>101</td>
+                                        <td>202</td>
+                                        <td>$2,500.00</td>
+                                        <td>2024-08-15 10:30</td>
+                                        <td>Tarjeta de Crédito</td>
+                                        <td>
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>102</td>
+                                        <td>203</td>
+                                        <td>$1,500.00</td>
+                                        <td>2024-08-16 11:00</td>
+                                        <td>Transferencia Bancaria</td>
+                                        <td>
+                                            <label class="switch">
+                                                <input type="checkbox">
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>103</td>
+                                        <td>204</td>
+                                        <td>$3,000.00</td>
+                                        <td>2024-08-17 12:45</td>
+                                        <td>Pago en Efectivo</td>
+                                        <td>
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>104</td>
+                                        <td>205</td>
+                                        <td>$1,200.00</td>
+                                        <td>2024-08-18 14:00</td>
+                                        <td>Tarjeta de Crédito</td>
+                                        <td>
+                                            <label class="switch">
+                                                <input type="checkbox">
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>105</td>
+                                        <td>206</td>
+                                        <td>$1,800.00</td>
+                                        <td>2024-08-19 09:30</td>
+                                        <td>Transferencia Bancaria</td>
+                                        <td>
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>106</td>
+                                        <td>207</td>
+                                        <td>$2,200.00</td>
+                                        <td>2024-08-20 16:00</td>
+                                        <td>Pago en Efectivo</td>
+                                        <td>
+                                            <label class="switch">
+                                                <input type="checkbox">
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td>107</td>
+                                        <td>208</td>
+                                        <td>$3,500.00</td>
+                                        <td>2024-08-21 11:15</td>
+                                        <td>Tarjeta de Crédito</td>
+                                        <td>
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td>108</td>
+                                        <td>209</td>
+                                        <td>$2,750.00</td>
+                                        <td>2024-08-22 13:45</td>
+                                        <td>Transferencia Bancaria</td>
+                                        <td>
+                                            <label class="switch">
+                                                <input type="checkbox">
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td>109</td>
+                                        <td>210</td>
+                                        <td>$3,100.00</td>
+                                        <td>2024-08-23 10:30</td>
+                                        <td>Pago en Efectivo</td>
+                                        <td>
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>10</td>
+                                        <td>110</td>
+                                        <td>211</td>
+                                        <td>$4,000.00</td>
+                                        <td>2024-08-24 15:00</td>
+                                        <td>Tarjeta de Crédito</td>
+                                        <td>
+                                            <label class="switch">
+                                                <input type="checkbox">
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>11</td>
+                                        <td>111</td>
+                                        <td>212</td>
+                                        <td>$1,600.00</td>
+                                        <td>2024-08-25 08:00</td>
+                                        <td>Transferencia Bancaria</td>
+                                        <td>
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>12</td>
+                                        <td>112</td>
+                                        <td>213</td>
+                                        <td>$1,900.00</td>
+                                        <td>2024-08-26 14:15</td>
+                                        <td>Pago en Efectivo</td>
+                                        <td>
+                                            <label class="switch">
+                                                <input type="checkbox">
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>13</td>
+                                        <td>113</td>
+                                        <td>214</td>
+                                        <td>$2,300.00</td>
+                                        <td>2024-08-27 11:30</td>
+                                        <td>Tarjeta de Crédito</td>
+                                        <td>
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>14</td>
+                                        <td>114</td>
+                                        <td>215</td>
+                                        <td>$2,700.00</td>
+                                        <td>2024-08-28 16:00</td>
+                                        <td>Transferencia Bancaria</td>
+                                        <td>
+                                            <label class="switch">
+                                                <input type="checkbox">
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>15</td>
+                                        <td>115</td>
+                                        <td>216</td>
+                                        <td>$3,200.00</td>
+                                        <td>2024-08-29 09:00</td>
+                                        <td>Pago en Efectivo</td>
+                                        <td>
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <script src="js/jquery-3.3.1.min.js"></script>
         <!-- https://jquery.com/download/ -->
         <script src="js/bootstrap.min.js"></script>
